@@ -8,6 +8,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <jsp:include page="header.jsp" />
+<form action="${pageContext.request.contextPath}/updateStatusByMaster" method="post">
 <c:forEach var="masterRequestList" items="${masterRequestList}">
     <c:out value='${masterRequestList.getRequestId()}'/>
     <c:out value='${masterRequestList.getFirstName()}'/>
@@ -18,6 +19,16 @@
     <c:if test = "${masterRequestList.getFeedback() !=null}">
         <c:out value='${masterRequestList.getFeedback()}'/>
     </c:if>
+    <input type="hidden" name="requestId" value="<c:out value='${masterRequestList.getRequestId()}'/>">
+    <c:if test = "${masterRequestList.getStatusId() == 3}">
+        <input type="hidden" name="statusId" value=5>
+        <input type="submit" value="Принять в работу">
+    </c:if>
+    <c:if test = "${masterRequestList.getStatusId() == 5}">
+        <input type="hidden" name="statusId" value=6>
+        <input type="submit" value="Выполнено">
+    </c:if>
 </c:forEach>
+</form>
 <jsp:include page="footer.jsp" />
 

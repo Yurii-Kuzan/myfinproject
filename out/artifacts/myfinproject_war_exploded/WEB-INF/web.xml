@@ -73,6 +73,26 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>ServletManageRequestsByMaster</servlet-name>
+        <servlet-class>Servlets.ServletManageRequestByMaster</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>ServletManageRequestsByMaster</servlet-name>
+        <url-pattern>/manageRequestsByMaster</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ServletManageRequestsByStatus</servlet-name>
+        <servlet-class>Servlets.ServletManageRequestByStatus</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>ServletManageRequestsByStatus</servlet-name>
+        <url-pattern>/manageRequestsByStatus</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>ServletWorkRequests</servlet-name>
         <servlet-class>Servlets.ServletWorkRequests</servlet-class>
     </servlet>
@@ -101,6 +121,7 @@
         <servlet-name>ServletRequestAddMoney</servlet-name>
         <url-pattern>/moneyRequest</url-pattern>
     </servlet-mapping>
+
     <servlet>
         <servlet-name>ServletAddMoney</servlet-name>
         <servlet-class>Servlets.ServletAddMoney</servlet-class>
@@ -112,6 +133,36 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>ServletCancelRequest</servlet-name>
+        <servlet-class>Servlets.ServletCancelRequest</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>ServletCancelRequest</servlet-name>
+        <url-pattern>/cancelRequest</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ServletPayment</servlet-name>
+        <servlet-class>Servlets.ServletPayment</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>ServletPayment</servlet-name>
+        <url-pattern>/payment</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ServletAddMoneyList</servlet-name>
+        <servlet-class>Servlets.ServletAddMoneyList</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>ServletAddMoneyList</servlet-name>
+        <url-pattern>/addMoneyList</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>ServletUpdateStatus</servlet-name>
         <servlet-class>Servlets.ServletUpdateStatus</servlet-class>
     </servlet>
@@ -119,6 +170,26 @@
     <servlet-mapping>
         <servlet-name>ServletUpdateStatus</servlet-name>
         <url-pattern>/updateCostStatus</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ServletUpdateStatusByMaster</servlet-name>
+        <servlet-class>Servlets.ServletUpdateStatusByMaster</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>ServletUpdateStatusByMaster</servlet-name>
+        <url-pattern>/updateStatusByMaster</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ServletFeedback</servlet-name>
+        <servlet-class>Servlets.ServletFeedback</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>ServletFeedback</servlet-name>
+        <url-pattern>/feedback</url-pattern>
     </servlet-mapping>
 
 

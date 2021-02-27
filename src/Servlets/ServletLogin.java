@@ -57,20 +57,17 @@ public class ServletLogin extends HttpServlet {
                 if (roleId == 3) {
                     response.sendRedirect("http://localhost:1977/myfinproject_war_exploded/show");
                 } else {
-                   // RequestDispatcher rd = request.getRequestDispatcher("/managementPage");
+                    // RequestDispatcher rd = request.getRequestDispatcher("/managementPage");
                     //rd.forward(request, response);
-                    if(roleId==1){
-                    response.sendRedirect("http://localhost:1977/myfinproject_war_exploded/welcome.jsp");
-                    }
-                    else {
-                        response.sendRedirect("http://localhost:1977/myfinproject_war_exploded/welcome.jsp");
+                    if (roleId == 1) {
+                        response.sendRedirect("http://localhost:1977/myfinproject_war_exploded/manageRequests");
+                    } else {
+                        response.sendRedirect("http://localhost:1977/myfinproject_war_exploded/workRequests");
                     }
                 }
             } else {
-
                 out.print("Sorry login or password error");
-                RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
-                rd.include(request, response);
+                response.sendRedirect("home.jsp");
             }
         } catch (SQLException e) {
             e.printStackTrace();

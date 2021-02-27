@@ -5,15 +5,17 @@ public class UserReq {
     private int requestId;
     private String serviceName;
     private int cost;
+    private int statusId;
     private String statusName;
     private String requestDate;
     private String feedback;
 
-    public UserReq(int requestId,String serviceName,int cost,String statusName,String requestDate,String feedback)
+    public UserReq(int requestId,String serviceName,int cost,int statusId,String statusName,String requestDate,String feedback)
     {
         this.requestId=requestId;
         this.serviceName=serviceName;
         this.cost=cost;
+        this.statusId=statusId;
         this.statusName=statusName;
         this.requestDate=requestDate;
         this.feedback=feedback;
@@ -41,6 +43,14 @@ public class UserReq {
 
     public int getCost() {
         return cost;
+    }
+
+    public void setStatusId(int statusId) {
+        this.statusId = statusId;
+    }
+
+    public int getStatusId() {
+        return statusId;
     }
 
     public void setStatusName(String statusName) {
@@ -74,6 +84,7 @@ public class UserReq {
         UserReq userReq = (UserReq) o;
         return requestId == userReq.requestId &&
                 cost == userReq.cost &&
+                statusId == userReq.statusId &&
                 Objects.equals(serviceName, userReq.serviceName) &&
                 Objects.equals(statusName, userReq.statusName) &&
                 Objects.equals(requestDate, userReq.requestDate) &&
@@ -82,7 +93,7 @@ public class UserReq {
 
     @Override
     public int hashCode() {
-        return Objects.hash(requestId, serviceName, cost, statusName, requestDate, feedback);
+        return Objects.hash(requestId, serviceName, cost, statusId, statusName, requestDate, feedback);
     }
 
     @Override
@@ -91,6 +102,7 @@ public class UserReq {
                 "requestId=" + requestId +
                 ", serviceName='" + serviceName + '\'' +
                 ", cost=" + cost +
+                ", statusId=" + statusId +
                 ", statusName='" + statusName + '\'' +
                 ", requestDate='" + requestDate + '\'' +
                 ", feedback='" + feedback + '\'' +

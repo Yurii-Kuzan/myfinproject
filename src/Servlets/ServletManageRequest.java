@@ -44,7 +44,7 @@ public class ServletManageRequest extends HttpServlet {
         }
 
 
-        request.setAttribute("masters",listMasters);
+        request.setAttribute("listMasters",listMasters);
         request.setAttribute("usersRequestList",usersRequestList);
         getServletContext().getRequestDispatcher("/adminPage.jsp").forward(request,response);
 

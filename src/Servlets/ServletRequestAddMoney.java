@@ -39,7 +39,7 @@ public class ServletRequestAddMoney extends HttpServlet {
         dbManager.RequestAddMoney(userId,addMoney);
 
         // response.sendRedirect("http://localhost:1977/myfinproject_war_exploded/myRequests.jsp");
-        getServletContext().getRequestDispatcher("/myWallet.jsp").forward(request,response);
+        getServletContext().getRequestDispatcher("//wallet").forward(request,response);
 
     }
 }

@@ -5,7 +5,6 @@ import db.entity.*;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Stack;
 
 
 public class DBManager {
@@ -20,19 +19,26 @@ public class DBManager {
     private static final String SELECT_USER_ID_BY_EMAIL = "select users.user_id from users where login = ?;";
     private static final String SELECT_ROLE_ID_BY_EMAIL="select users.role_id from users where login = ?;";
     private static final String SELECT_ALL_FROM_USER = "select * from users;";
-    private static final String SELECT_ALL_FROM_REQUESTS = "select * from service_request;";
-    private static final String SELECT_ALL_FROM_USER_REQUESTS = "select request_id,service_name,cost,status_name,request_date,feedback from service_request inner join services on services.service_id=service_request.service_id inner join request_statuses on request_statuses.status_id=service_request.status_id where service_request.user_id=?;";
+    //private static final String SELECT_ALL_FROM_REQUESTS = "select * from service_request;";
+    private static final String SELECT_ALL_FROM_USER_REQUESTS = "select request_id,service_name,cost,service_request.status_id,status_name,request_date,feedback from service_request inner join services on services.service_id=service_request.service_id inner join request_statuses on request_statuses.status_id=service_request.status_id where service_request.user_id=?;";
     private static final String SELECT_SAULT_BY_EMAIL="select users.sault from users where login = ?;";
     private static final String SELECT_ALL_LOGINS="select login from users;";
     private static final String SELECT_ALL_FROM_USERS_REQUESTS="select request_id,firstname,lastname,service_name,cost,service_request.status_id,status_name,request_date,feedback from service_request inner join users on users.user_id=service_request.user_id inner join services on services.service_id=service_request.service_id inner join request_statuses on request_statuses.status_id=service_request.status_id;";
-    private static final String SELECT_REQUESTS_FOR_MASTER="select request_id,firstname,lastname,service_name,cost,status_id,status_name,request_date,feedback from service_request inner join users on users.user_id=service_request.user_id inner join services on services.service_id=service_request.service_id inner join request_statuses on request_statuses.status_id=service_request.status_id where master_id=?;";
-    private static final String SELECT_WALLET_BY_ID="select wallet from users where user_id=?;";
-    private static final String REQUEST_ADD_MONEY="update users set add_money=? where user_id=?;";
-    private static final String ADD_MONEY_LIST="select * from users where add_money>0;";
-    private static final String ADDING_MONEY="update users set wallet=?,add_money=0 where user_id=?;";
-    private static final String SELECT_ALL_FROM_STATUSES="select * from request_statuses;";
+    private static final String SELECT_REQUESTS_FOR_MASTER="select request_id,firstname,lastname,service_name,cost,service_request.status_id,status_name,request_date,feedback from service_request inner join users on users.user_id=service_request.user_id inner join services on services.service_id=service_request.service_id inner join request_statuses on request_statuses.status_id=service_request.status_id where master_id=?;";
     private static final String UPDATE_REQUEST_STATUS="update service_request set cost=?,status_id=?,master_id=? where request_id=?;";
     private static final String SELECT_MASTERS="select user_id,lastname from users where role_id=2;";
+    private static final String UPDATE_REQUEST_STATUS_BY_MASTER="update service_request set status_id=? where request_id=?;";
+    private static final String SELECT_WALLET_BY_ID="select wallet,add_money from users where user_id=?;";
+    private static final String REQUEST_ADD_MONEY="update users set add_money=? where user_id=?;";
+    private static final String ADD_MONEY_LIST="select user_id,firstname,lastname,login,wallet,add_money from users where add_money>0;";
+    private static final String ADDING_MONEY="update users set wallet=?,add_money=0 where user_id=?;";
+    private static final String SELECT_ALL_FROM_USERS_REQUESTS_BY_DATE="select request_id,firstname,lastname,service_name,cost,service_request.status_id,status_name,request_date,feedback from service_request inner join users on users.user_id=service_request.user_id inner join services on services.service_id=service_request.service_id inner join request_statuses on request_statuses.status_id=service_request.status_id order by service_request.status_id;";
+    private static final String UPDATE_FEEDBACK="update service_request set feedback=? where request_id=?;";
+    private static final String CANCEL_REQUEST="update service_request set status_id=? where request_id=?;";
+    private static final String SELECT_USER_WALLET="select wallet from users where user_id=?;";
+    private static final String PAYMENT_SET_STATUS="update service_request set status_id=3 where request_id=?;";
+    private static final String PAYMENT_SET_WALLET="update users set wallet=? where user_id=?;";
+
 
     private static DBManager dbManager;
 
@@ -65,12 +71,12 @@ public class DBManager {
 
              PreparedStatement preparedStatement = connection.prepareStatement(INSERT_NEW_USER)) {
             preparedStatement.setString(1, users.getLogin());
-            preparedStatement.setString(2, users.getfirstName());
-            preparedStatement.setString(3, users.getlastName());
+            preparedStatement.setString(2, users.getFirstName());
+            preparedStatement.setString(3, users.getLastName());
             preparedStatement.setString(4, users.getPassword());
             preparedStatement.setString(5, users.getSault());
             preparedStatement.setInt(6, users.getWallet());
-            preparedStatement.setInt(7, users.getMoneyAdd());
+            preparedStatement.setInt(7, users.getAddMoney());
             preparedStatement.setInt(8, users.getRoleId());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
@@ -109,9 +115,9 @@ public class DBManager {
                 String password = rs.getString("password");
                 String sault = rs.getString("sault");
                 int wallet = rs.getInt("wallet");
-                int moneyAdd=rs.getInt("money_add");
+                int addMoney=rs.getInt("money_add");
                 int roleId = rs.getInt("role_id");
-                users.add(new Users(login,firstName,lastName,password,sault,wallet,moneyAdd,roleId));
+                users.add(new Users(login,firstName,lastName,password,sault,wallet,addMoney,roleId));
             }
 
         } catch (SQLException e) {
@@ -204,10 +210,11 @@ public class DBManager {
                 int requestId=rs.getInt("request_id");
                 String serviceName = rs.getString("service_name");
                 int cost = rs.getInt("cost");
+                int statusId = rs.getInt("status_id");
                 String statusName = rs.getString("status_name");
                 String requestDate=rs.getString("request_date");
                 String feedback = rs.getString("feedback");
-                requests.add(new UserReq(requestId,serviceName,cost,statusName,requestDate,feedback));
+                requests.add(new UserReq(requestId,serviceName,cost,statusId,statusName,requestDate,feedback));
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -225,6 +232,37 @@ public class DBManager {
         try (Connection connection = getConnection();
 
              PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_FROM_USERS_REQUESTS)) {
+            rs = preparedStatement.executeQuery();
+
+            while (rs.next()) {
+                int requestId=rs.getInt("request_id");
+                String firstName=rs.getString("firstname");
+                String lastName=rs.getString("lastname");
+                String serviceName = rs.getString("service_name");
+                int cost = rs.getInt("cost");
+                int statusId=rs.getInt("status_id");
+                String statusName = rs.getString("status_name");
+                String requestDate=rs.getString("request_date");
+                String feedback = rs.getString("feedback");
+                allRequests.add(new ManageReq(requestId,firstName,lastName,serviceName,cost,statusId,statusName,requestDate,feedback));
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }finally {
+            assert rs != null;
+            rs.close();
+        }
+        return allRequests;
+    }
+
+
+    public List<ManageReq> findAllUsersRequestsByStatus() throws SQLException {
+
+        ResultSet rs = null;
+        List<ManageReq> allRequests = new ArrayList<>();
+        try (Connection connection = getConnection();
+
+             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_FROM_USERS_REQUESTS_BY_DATE)) {
             rs = preparedStatement.executeQuery();
 
             while (rs.next()) {
@@ -303,9 +341,10 @@ public class DBManager {
         return id;
     }
 
-    public int getUserWallet(int userId) throws SQLException {
+    public List <Wallet> getUserWallet(int userId) throws SQLException {
 
         ResultSet rs = null;
+        List<Wallet> userWallet = new ArrayList<>();
         int wallet = 0;
 
         try (Connection connection = getConnection();
@@ -316,6 +355,8 @@ public class DBManager {
 
             while (rs.next()) {
                 wallet = Integer.parseInt(rs.getString("wallet"));
+                int addMoney= Integer.parseInt(rs.getString("add_money"));
+                userWallet.add(new Wallet(wallet,addMoney));
             }
 
         } catch (SQLException e) {
@@ -324,7 +365,7 @@ public class DBManager {
             assert rs != null;
             rs.close();
         }
-        return wallet;
+        return userWallet;
     }
 
     public List<Users> AddMoneyList() throws SQLException {
@@ -338,9 +379,12 @@ public class DBManager {
 
             while (rs.next()) {
                 int userId=rs.getInt("user_id");
+                String firstName=rs.getString("firstname");
+                String lastName =rs.getString("lastname");
+                String login =rs.getString("login");
                 int wallet = rs.getInt("wallet");
                 int addMoney = rs.getInt("add_money");
-                addMoneyList.add(new Users(userId,wallet,addMoney));
+                addMoneyList.add(new Users(userId,firstName,lastName,login,wallet,addMoney));
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -358,6 +402,61 @@ public class DBManager {
              PreparedStatement preparedStatement = connection.prepareStatement(ADDING_MONEY)) {
             preparedStatement.setInt(1, wallet);
             preparedStatement.setInt(2, userId);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+
+        }
+    }
+
+    public void UpdateFeedback(int requestId,String feedback) {
+
+        try (Connection connection = getConnection();
+
+             PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_FEEDBACK)) {
+            preparedStatement.setString(1, feedback);
+            preparedStatement.setInt(2, requestId);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+
+        }
+    }
+
+    public void PaymentSetStatus(int requestId) {
+
+        try (Connection connection = getConnection();
+
+             PreparedStatement preparedStatement = connection.prepareStatement(PAYMENT_SET_STATUS)) {
+            preparedStatement.setInt(1, requestId);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+
+        }
+    }
+
+    public void PaymentSetWallet(int userId,int wallet) {
+
+        try (Connection connection = getConnection();
+
+             PreparedStatement preparedStatement = connection.prepareStatement(PAYMENT_SET_WALLET)) {
+            preparedStatement.setInt(1, wallet);
+            preparedStatement.setInt(2, userId);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+
+        }
+    }
+
+    public void CancelRequest(int requestId,int statusId) {
+
+        try (Connection connection = getConnection();
+
+             PreparedStatement preparedStatement = connection.prepareStatement(CANCEL_REQUEST)) {
+            preparedStatement.setInt(1, statusId);
+            preparedStatement.setInt(2, requestId);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -389,6 +488,30 @@ public class DBManager {
         return roleId;
     }
 
+    public int getWallet(int userId) throws SQLException {
+
+        ResultSet rs = null;
+        int wallet = 0;
+
+        try (Connection connection = getConnection();
+
+             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_USER_WALLET)) {
+            preparedStatement.setInt(1, userId);
+            rs = preparedStatement.executeQuery();
+
+            while (rs.next()) {
+                wallet = Integer.parseInt(rs.getString("wallet"));
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }finally {
+            assert rs != null;
+            rs.close();
+        }
+        return wallet;
+    }
+
     public String getUserSaultByEmail(String email) throws SQLException {
 
         ResultSet rs = null;
@@ -412,6 +535,7 @@ public class DBManager {
         }
         return sault;
     }
+
     public void RequestAddMoney(int userId,int addMoney){
         try (Connection connection = getConnection();
 
@@ -422,29 +546,6 @@ public class DBManager {
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
-    }
-
-    public List<Status> findAllStatuses() throws SQLException {
-
-        ResultSet rs = null;
-        List<Status> statuses = new ArrayList<>();
-        try (Connection connection = getConnection();
-
-             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_FROM_STATUSES)) {
-            rs = preparedStatement.executeQuery();
-            while (rs.next()) {
-                int statusId = rs.getInt("status_id");
-                String statusName = rs.getString("status_name");
-                statuses.add(new Status(statusId,statusName));
-            }
-
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }finally {
-            assert rs != null;
-            rs.close();
-        }
-        return statuses;
     }
 
 
@@ -462,6 +563,19 @@ public class DBManager {
             System.out.println(e.getMessage());
         }
 }
+
+    public void UpdateStatusByMaster(int requestId,int statusId){
+
+        try (Connection connection = getConnection();
+
+             PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_REQUEST_STATUS_BY_MASTER)) {
+            preparedStatement.setInt(1, statusId);
+            preparedStatement.setInt(2, requestId);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
 
     public List<Master> listMasters() throws SQLException {
         ResultSet rs = null;

@@ -9,6 +9,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <jsp:include page="header.jsp" />
+<a href="${pageContext.request.contextPath}/manageRequestsByMaster?masterId=2">Заказы мастера Влад</a>
+<a href="${pageContext.request.contextPath}/manageRequestsByMaster?masterId=3">Заказы мастера Олег</a>
+<a href="${pageContext.request.contextPath}/manageRequestsByStatus">Сортировать по статусу заказа</a>
 <form action="${pageContext.request.contextPath}/updateCostStatus" method="post">
 <c:forEach var="usersRequestList" items="${usersRequestList}">
     <c:out value='${usersRequestList.getRequestId()}'/>
@@ -24,10 +27,10 @@
         <c:out value='${usersRequestList.getFeedback()}'/>
     </c:if>
     <c:if test = "${usersRequestList.getStatusId() == 1}">
-        <select name="masters">
-            <c:forEach var="masters" items="${masters}" >
-                <option value="${masters.getMasterId()}">
-                    <c:out value="${masters.getMasterName()}"/>
+        <select name="listMasters">
+            <c:forEach var="listMasters" items="${listMasters}" >
+                <option value="${listMasters.getMasterId()}">
+                    <c:out value="${listMasters.getMasterName()}"/>
                 </option>
             </c:forEach>
         </select>

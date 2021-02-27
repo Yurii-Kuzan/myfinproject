@@ -33,7 +33,7 @@ public class ServletUpdateStatus extends HttpServlet {
         int cost=Integer.parseInt(request.getParameter("cost"));
         int requestId=Integer.parseInt(request.getParameter("requestId"));
         int statusId = 2;
-        int masterId = Integer.parseInt(request.getParameter("masters"));
+        int masterId = Integer.parseInt(request.getParameter("listMasters"));
 
         if(session != null){
             userId = (int) session.getAttribute("id");

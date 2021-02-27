@@ -29,19 +29,17 @@ public class ServletAddMoney extends HttpServlet {
         // HttpSession session = request.getSession(false);
         // int status = Integer.parseInt(request.getParameter("status"));
         HttpSession session = request.getSession(false);
-        int userId = 0;
+        int userId = Integer.parseInt(request.getParameter("userId"));
         int wallet=Integer.parseInt(request.getParameter("wallet"));
         int addMoney=Integer.parseInt(request.getParameter("addMoney"));
         // int status = Integer.parseInt(request.getParameter("status"));
 
-        if(session != null){
-            userId = (int) session.getAttribute("id");
-        }
+
 
         dbManager.AddingMoney(userId,wallet,addMoney);
 
         // response.sendRedirect("http://localhost:1977/myfinproject_war_exploded/myRequests.jsp");
-        getServletContext().getRequestDispatcher("/myWallet.jsp").forward(request,response);
+        getServletContext().getRequestDispatcher("/addMoneyList").forward(request,response);
 
     }
 }

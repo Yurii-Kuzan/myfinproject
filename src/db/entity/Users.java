@@ -16,8 +16,11 @@ public class Users {
         this.login = login;
         this.password = password;
     }
-    public Users(int userId,int wallet,int moneyAdd){
+    public Users(int userId,String firstName,String lastName,String login,int wallet,int moneyAdd){
         this.userId=userId;
+        this.firstName=firstName;
+        this.lastName=lastName;
+        this.login=login;
         this.wallet=wallet;
         this.moneyAdd=moneyAdd;
     }
@@ -65,15 +68,15 @@ public class Users {
         this.firstName = firstName;
     }
 
-    public String getfirstName() {
+    public String getFirstName() {
         return firstName;
     }
 
-    public void setlastName(String lastName) {
+    public void setLastName(String lastName) {
         this.lastName = lastName;
     }
 
-    public String getlastName() {
+    public String getLastName() {
         return lastName;
     }
 
@@ -101,11 +104,11 @@ public class Users {
         return wallet;
     }
 
-    public void setMoneyAdd(int moneyAdd) {
+    public void setAddMoney(int moneyAdd) {
         this.moneyAdd = moneyAdd;
     }
 
-    public int getMoneyAdd() {
+    public int getAddMoney() {
         return moneyAdd;
     }
 

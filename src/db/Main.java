@@ -18,8 +18,8 @@ public class Main {
         int wallet=0;
         int roleId=3;*/
         DBManager dbManager = DBManager.getInstance();
-        int wallet = dbManager.getUserWallet(4);
-        System.out.println(wallet);
+        //int wallet = dbManager.getUserWallet(4);
+       // System.out.println(dbManager.findAllUserRequests(4));
         //dbManager.insertUser(Users.createUser(login,password,firstName,lastName,sault,wallet,roleId));
     }
 }
