@@ -8,27 +8,69 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <jsp:include page="header.jsp" />
-<form action="${pageContext.request.contextPath}/updateStatusByMaster" method="post">
-<c:forEach var="masterRequestList" items="${masterRequestList}">
-    <c:out value='${masterRequestList.getRequestId()}'/>
-    <c:out value='${masterRequestList.getFirstName()}'/>
-    <c:out value='${masterRequestList.getLastName()}'/>
-    <c:out value='${masterRequestList.getServiceName()}'/>
-    <c:out value='${masterRequestList.getStatusName()}'/>
-    <c:out value='${masterRequestList.getRequestDate()}'/>
-    <c:if test = "${masterRequestList.getFeedback() !=null}">
-        <c:out value='${masterRequestList.getFeedback()}'/>
-    </c:if>
-    <input type="hidden" name="requestId" value="<c:out value='${masterRequestList.getRequestId()}'/>">
-    <c:if test = "${masterRequestList.getStatusId() == 3}">
-        <input type="hidden" name="statusId" value=5>
-        <input type="submit" value="Принять в работу">
-    </c:if>
-    <c:if test = "${masterRequestList.getStatusId() == 5}">
-        <input type="hidden" name="statusId" value=6>
-        <input type="submit" value="Выполнено">
-    </c:if>
-</c:forEach>
-</form>
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">Request number</th>
+                    <th scope="col">First name</th>
+                    <th scope="col">Last name</th>
+                    <th scope="col">Service name</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Request Date</th>
+                    <th scope="col" colspan="7">Feedback</th>
+                </tr>
+                </thead>
+                <tbody>
+                <form action="${pageContext.request.contextPath}/updateStatusByMaster" method="post">
+                    <c:forEach var="masterRequestList" items="${masterRequestList}">
+                        <tr>
+                            <th scope="row">
+                                <c:out value='${masterRequestList.getRequestId()}'/>
+                            </th>
+                            <td>
+                                <c:out value='${masterRequestList.getFirstName()}'/>
+                            </td>
+                            <td>
+                                <c:out value='${masterRequestList.getLastName()}'/>
+                            </td>
+                            <td>
+                                <c:out value='${masterRequestList.getServiceName()}'/>
+                            </td>
+                            <td>
+                                <c:out value='${masterRequestList.getStatusName()}'/>
+                            </td>
+                            <td>
+                                <c:out value='${masterRequestList.getRequestDate()}'/>
+                            </td>
+                            <td>
+                                <c:if test="${masterRequestList.getFeedback() !=null}">
+                                    <c:out value='${masterRequestList.getFeedback()}'/>
+                                </c:if>
+                            </td>
+                            <td>
+                                <input type="hidden" name="requestId"
+                                       value="<c:out value='${masterRequestList.getRequestId()}'/>">
+                                <c:if test="${masterRequestList.getStatusId() == 3}">
+                                    <input type="hidden" name="statusId" value=5>
+                                    <button type="submit" class="btn btn-warning">Принять в работу</button>
+                                </c:if>
+                            </td>
+                            <td>
+                                <c:if test="${masterRequestList.getStatusId() == 5}">
+                                    <input type="hidden" name="statusId" value=6>
+                                    <button type="submit" class="btn btn-warning">Выполнено</button>
+                                </c:if>
+                            </td>
+                        </tr>
+                    </c:forEach>
+                </form>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
 <jsp:include page="footer.jsp" />
 

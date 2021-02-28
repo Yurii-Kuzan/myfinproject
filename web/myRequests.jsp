@@ -10,7 +10,7 @@
                     <th scope="col">Name</th>
                     <th scope="col">Cost</th>
                     <th scope="col">Status</th>
-                    <th scope="col" colspan="4">Request Date</th>
+                    <th scope="col" colspan="5">Request Date</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -22,6 +22,9 @@
                         <td>
                             <c:if test="${requestList.getCost() !=0}">
                                 <c:out value='${requestList.getCost()}'/>
+                            </c:if>
+                            <c:if test="${requestList.getCost() ==0}">
+                                Цена ещё не указана
                             </c:if>
                         </td>
                         <td>

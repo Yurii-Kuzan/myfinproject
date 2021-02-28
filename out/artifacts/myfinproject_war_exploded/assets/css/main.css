@@ -21,6 +21,7 @@
     align-items: center;
     text-align: center;
     background: url("../images/bg_auth.jpg") no-repeat center center / cover;
+    color: #ffffff;
 }
 
 .home__action {

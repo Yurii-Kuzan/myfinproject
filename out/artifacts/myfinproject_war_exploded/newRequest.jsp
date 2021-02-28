@@ -3,7 +3,7 @@
 <jsp:include page="header.jsp"/>
 <div class="container">
     <div class="row">
-        <div class="col-md-4 offset-md-8">
+        <div class="col-md-4">
             <div class="card mt-3 mb-3 p-4">
                 <h2>Выберите что вам нужно отремонтировать:</h2>
                 <form
@@ -30,5 +30,6 @@
             </div>
         </div>
     </div>
+    <h2>Или вы можете посмотреть свои заказы, нажав на "Мои заказы"</h2>
 </div>
 <jsp:include page="footer.jsp"/>
