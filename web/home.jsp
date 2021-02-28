@@ -35,41 +35,40 @@
                                  aria-labelledby="nav-profile-tab">
                                 <form action="${pageContext.request.contextPath}/newUser" method="post">
                                     <div class="mb-3">
-                                        <label for="reg_input_login">Email</label>
+                                        <label for="reg_input_login">Электронная почта</label>
                                         <input type="email" class="form-control" id="reg_input_login" name="login" required>
                                     </div>
                                     <div class="mb-3">
-                                        <label for="reg_first_name">First Name</label>
+                                        <label for="reg_first_name">Имя</label>
                                         <input type="text" class="form-control" id="reg_first_name" name="firstname" required>
                                     </div>
                                     <div class="mb-3">
-                                        <label for="reg_last_name">Last Name</label>
+                                        <label for="reg_last_name">Фамилия</label>
                                         <input type="text" class="form-control" id="reg_last_name" name="lastname" required>
                                     </div>
                                     <div class="mb-3">
-                                        <label for="reg_password">Password</label>
+                                        <label for="reg_password">Пароль</label>
                                         <input type="password" class="form-control" id="reg_password" name="prepassword" required>
                                     </div>
-                                    <button type="submit" class="btn btn-primary">Register</button>
+                                    <button type="submit" class="btn btn-primary">Зарегестрироваться</button>
                                 </form>
                             </div>
                             <div class="tab-pane fade show active" id="nav-contact" role="tabpanel"
                                  aria-labelledby="nav-contact-tab">
                                 <form action="${pageContext.request.contextPath}/login" method="post">
                                     <div class="mb-3">
-                                        <label for="exampleInputEmail1" class="form-label">Email address</label>
+                                        <label for="exampleInputEmail1" class="form-label">Электронная почта</label>
                                         <input type="email" name="user_login" class="form-control"
                                                id="exampleInputEmail1" aria-describedby="emailHelp" required>
-                                        <div id="emailHelp" class="form-text">We'll never share your email with anyone
-                                            else.
+                                        <div id="emailHelp" class="form-text">Мы не будем делиться вашими данными ни с кем
                                         </div>
                                     </div>
                                     <div class="mb-3">
-                                        <label for="exampleInputPassword1" class="form-label">Password</label>
+                                        <label for="exampleInputPassword1" class="form-label">Пароль</label>
                                         <input type="password" name="user_password" class="form-control"
                                                id="exampleInputPassword1" required>
                                     </div>
-                                    <button type="submit" class="btn btn-primary">Login</button>
+                                    <button type="submit" class="btn btn-primary">Войти</button>
                                 </form>
                             </div>
                         </div>

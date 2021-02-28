@@ -28,16 +28,12 @@ public class ServletWallet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 
-        // HttpSession session = request.getSession(false);
-        // int status = Integer.parseInt(request.getParameter("status"));
         HttpSession session = request.getSession(false);
         int userId = 0;
-        // int status = Integer.parseInt(request.getParameter("status"));
         List<Wallet> userWallet = new ArrayList<>();
         if (session != null) {
             userId = (int) session.getAttribute("id");
         }
-        int wallet = 0;
 
         try {
             userWallet = dbManager.getUserWallet(userId);
@@ -46,7 +42,6 @@ public class ServletWallet extends HttpServlet {
         }
 
         request.setAttribute("userWallet", userWallet);
-        // response.sendRedirect("http://localhost:1977/myfinproject_war_exploded/myRequests.jsp");
         getServletContext().getRequestDispatcher("/myWallet.jsp").forward(request, response);
 
     }

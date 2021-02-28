@@ -2,6 +2,7 @@ package Filters;
 
 import db.DBManager;
 import db.entity.Users;
+import org.apache.log4j.Logger;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
@@ -19,6 +20,7 @@ public class FilterLogin implements Filter {
 
 
     private final DBManager dbManager = DBManager.getInstance();
+    private static final Logger LOG = Logger.getLogger(FilterLogin.class);
 
     public void destroy() {
     }
@@ -36,7 +38,7 @@ public class FilterLogin implements Filter {
             String salt = dbManager.getUserSaultByEmail(login);
             password = password.concat(salt);
         } catch (SQLException e) {
-            e.printStackTrace();
+            LOG.info(e.getMessage());
         }
 
         try {
@@ -47,7 +49,7 @@ public class FilterLogin implements Filter {
                 httpResp.sendRedirect("http://localhost:1977/myfinproject_war_exploded/home.jsp");
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            LOG.info(e.getMessage());
         }
         out.close();
     }

@@ -7,11 +7,11 @@
             <table class="table">
                 <thead>
                 <tr>
-                    <th scope="col">Name</th>
-                    <th scope="col">Cost</th>
-                    <th scope="col">Status</th>
-                    <th scope="col">Request Date</th>
-                    <th scope="col" colspan="6">Feedback</th>
+                    <th scope="col">Пркдмет ремонта</th>
+                    <th scope="col">Цена</th>
+                    <th scope="col">Статус</th>
+                    <th scope="col">Дата заказа</th>
+                    <th scope="col" colspan="6">Отзыв</th>
                 </tr>
                 </thead>
                 <tbody>

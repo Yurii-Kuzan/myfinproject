@@ -24,8 +24,7 @@ public class ServletManageRequestByMaster extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 
-        // HttpSession session = request.getSession(false);
-        // int status = Integer.parseInt(request.getParameter("status"));
+
         List<ManageReq> usersRequestList = null;
         int masterId= Integer.parseInt(request.getParameter("masterId"));
         try {

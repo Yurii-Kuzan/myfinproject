@@ -13,6 +13,7 @@
           <element id="library" level="project" name="poi-ooxml-3.11" />
           <element id="library" level="project" name="poi-ooxml-schemas-3.11" />
           <element id="library" level="project" name="jstl-1.2" />
+          <element id="library" level="project" name="log4j-1.2.17" />
         </element>
       </element>
     </root>

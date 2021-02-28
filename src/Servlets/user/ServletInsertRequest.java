@@ -35,9 +35,6 @@ public class ServletInsertRequest extends HttpServlet {
         }
         DBManager dbManager = DBManager.getInstance();
         dbManager.insertRequest(Request.createRequest(userId,serviceId,statusId,requestDate));
-        //System.out.println(userId+" userId");
-        //System.out.println(serviceId+" service");
-        //System.out.println(statusId+" status id");
         getServletContext().getRequestDispatcher("/myRequests").forward(request,response);
 
 

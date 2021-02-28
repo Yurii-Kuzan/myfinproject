@@ -16,13 +16,13 @@
                 <table class="table">
                     <thead>
                     <tr>
-                        <th scope="col">Request number</th>
-                        <th scope="col">First name</th>
-                        <th scope="col">Last name</th>
-                        <th scope="col">Service name</th>
-                        <th scope="col">Status</th>
-                        <th scope="col">Request Date</th>
-                        <th scope="col" colspan="8">Feedback</th>
+                        <th scope="col">Номер заказа</th>
+                        <th scope="col">Имя</th>
+                        <th scope="col">Фамилия</th>
+                        <th scope="col">Предмет ремонта</th>
+                        <th scope="col">Статус</th>
+                        <th scope="col">Дата заказа</th>
+                        <th scope="col" colspan="8">Отзыв</th>
                     </tr>
                     </thead>
                     <tbody>

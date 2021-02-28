@@ -27,12 +27,11 @@ public class ServletMyRequests extends HttpServlet {
 
         HttpSession session = request.getSession(false);
         int userId = 0;
-       // int status = Integer.parseInt(request.getParameter("status"));
 
         if(session != null){
             userId = (int) session.getAttribute("id");
         }
-        //System.out.println(userId);
+
         List<UserReq> requestList = null;
 
         try {
@@ -43,7 +42,6 @@ public class ServletMyRequests extends HttpServlet {
 
 
         request.setAttribute("requestList",requestList);
-       // response.sendRedirect("http://localhost:1977/myfinproject_war_exploded/myRequests.jsp");
         getServletContext().getRequestDispatcher("/myRequests.jsp").forward(request,response);
 
     }

@@ -26,19 +26,16 @@ public class ServletAddMoney extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 
-        // HttpSession session = request.getSession(false);
-        // int status = Integer.parseInt(request.getParameter("status"));
+
         HttpSession session = request.getSession(false);
         int userId = Integer.parseInt(request.getParameter("userId"));
         int wallet=Integer.parseInt(request.getParameter("wallet"));
         int addMoney=Integer.parseInt(request.getParameter("addMoney"));
-        // int status = Integer.parseInt(request.getParameter("status"));
-
 
 
         dbManager.AddingMoney(userId,wallet,addMoney);
 
-        // response.sendRedirect("http://localhost:1977/myfinproject_war_exploded/myRequests.jsp");
+
         getServletContext().getRequestDispatcher("/addMoneyList").forward(request,response);
 
     }

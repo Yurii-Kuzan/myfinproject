@@ -18,16 +18,11 @@ public class ServletManageRequestByStatus extends HttpServlet {
 
     private static final DBManager dbManager = DBManager.getInstance();
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        doGet(request, response);
-    }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 
-        // HttpSession session = request.getSession(false);
-        // int status = Integer.parseInt(request.getParameter("status"));
         List<ManageReq> usersRequestList = null;
-        List<Master> listMasters=null;
+        List<Master> listMasters = null;
 
         try {
             usersRequestList = dbManager.findAllUsersRequestsByStatus();
@@ -41,9 +36,9 @@ public class ServletManageRequestByStatus extends HttpServlet {
         }
 
 
-        request.setAttribute("listMasters",listMasters);
-        request.setAttribute("usersRequestList",usersRequestList);
-        getServletContext().getRequestDispatcher("/sortedRequests.jsp").forward(request,response);
+        request.setAttribute("listMasters", listMasters);
+        request.setAttribute("usersRequestList", usersRequestList);
+        getServletContext().getRequestDispatcher("/sortedRequests.jsp").forward(request, response);
 
     }
 }

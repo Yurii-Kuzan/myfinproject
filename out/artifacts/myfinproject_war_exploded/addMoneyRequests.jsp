@@ -15,11 +15,11 @@
             <table class="table">
                 <thead>
                 <tr>
-                    <th scope="col">First name</th>
-                    <th scope="col">Last name</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">Wallet</th>
-                    <th scope="col" colspan="5">Sum to add</th>
+                    <th scope="col">Имя</th>
+                    <th scope="col">Фамилия</th>
+                    <th scope="col">Эл. почта</th>
+                    <th scope="col">Счёт</th>
+                    <th scope="col" colspan="5">Сумма пополнения</th>
                 </tr>
                 </thead>
                 <tbody>

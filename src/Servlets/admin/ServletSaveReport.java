@@ -78,16 +78,16 @@ public class ServletSaveReport extends HttpServlet {
             createSheetHeader(sheet, ++rowNum, dataModel);
         }
 
-        try (FileOutputStream out = new FileOutputStream(new File("C:\\Users\\Yurii\\Desktop\\myfinproject\\Reports.xls"))) {
+        try (FileOutputStream out = new FileOutputStream(new File("C:\\Users\\Yurii\\Desktop\\myfinproject\\RepairReports.xls"))) {
             workbook.write(out);
         } catch (IOException e) {
             e.getMessage();
         }
 
         response.setContentType("application/vnd.ms-excel");
-        response.setHeader("Content-disposition", "attachment; filename=Report.xls");
+        response.setHeader("Content-disposition", "attachment; filename=RepairReport.xls");
 
-        File my_file = new File("C:\\Users\\Yurii\\Desktop\\myfinproject\\Reports.xls");
+        File my_file = new File("C:\\Users\\Yurii\\Desktop\\myfinproject\\RepairReports.xls");
 
         // send file to response
         OutputStream out = response.getOutputStream();

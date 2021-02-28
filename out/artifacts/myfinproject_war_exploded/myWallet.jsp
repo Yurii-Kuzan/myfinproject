@@ -19,8 +19,8 @@
                 <table class="table">
                     <thead>
                     <tr>
-                        <th scope="col">Wallet</th>
-                        <th scope="col" colspan="2">Sum to add:</th>
+                        <th scope="col">Счёт</th>
+                        <th scope="col" colspan="2">Сумма пополнения:</th>
                     </tr>
                     </thead>
                     <tbody>

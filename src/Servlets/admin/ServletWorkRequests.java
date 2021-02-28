@@ -26,11 +26,9 @@ public class ServletWorkRequests extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 
-        // HttpSession session = request.getSession(false);
-        // int status = Integer.parseInt(request.getParameter("status"));
+
         HttpSession session = request.getSession(false);
         int masterId = 0;
-        // int status = Integer.parseInt(request.getParameter("status"));
 
         if(session != null){
             masterId = (int) session.getAttribute("id");
@@ -44,7 +42,6 @@ public class ServletWorkRequests extends HttpServlet {
         }
 
         request.setAttribute("masterRequestList",masterRequestList);
-        // response.sendRedirect("http://localhost:1977/myfinproject_war_exploded/myRequests.jsp");
         getServletContext().getRequestDispatcher("/masterPage.jsp").forward(request,response);
 
     }

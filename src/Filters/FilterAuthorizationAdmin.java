@@ -33,13 +33,13 @@ public class FilterAuthorizationAdmin implements Filter {
             int roleId = (int) session.getAttribute("roleId");
             if(roleId == 1 || roleId == 2){
                 chain.doFilter(req, resp);
-            }else{
+            }
+            else{
                 out.print("First of all you should sign in");
                 httpResp.sendRedirect("http://localhost:1977/myfinproject_war_exploded/home.jsp");
             }
 
         }
-
         out.close();
     }
 

@@ -1,7 +1,6 @@
 package Servlets.admin;
 
 import db.DBManager;
-import db.entity.Services;
 import db.entity.Users;
 
 import javax.servlet.ServletException;
@@ -11,7 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.Iterator;
 import java.util.List;
 
 @WebServlet(name = "/addMoneyList")
