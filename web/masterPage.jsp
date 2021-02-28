@@ -7,24 +7,25 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<jsp:include page="header.jsp" />
+<jsp:include page="header.jsp"/>
 <div class="container">
     <div class="row">
         <div class="col-12">
-            <table class="table">
-                <thead>
-                <tr>
-                    <th scope="col">Request number</th>
-                    <th scope="col">First name</th>
-                    <th scope="col">Last name</th>
-                    <th scope="col">Service name</th>
-                    <th scope="col">Status</th>
-                    <th scope="col">Request Date</th>
-                    <th scope="col" colspan="7">Feedback</th>
-                </tr>
-                </thead>
-                <tbody>
-                <form action="${pageContext.request.contextPath}/updateStatusByMaster" method="post">
+
+            <form action="${pageContext.request.contextPath}/updateStatusByMaster" method="post">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col">Request number</th>
+                        <th scope="col">First name</th>
+                        <th scope="col">Last name</th>
+                        <th scope="col">Service name</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Request Date</th>
+                        <th scope="col" colspan="8">Feedback</th>
+                    </tr>
+                    </thead>
+                    <tbody>
                     <c:forEach var="masterRequestList" items="${masterRequestList}">
                         <tr>
                             <th scope="row">
@@ -51,26 +52,26 @@
                                 </c:if>
                             </td>
                             <td>
-                                <input type="hidden" name="requestId"
-                                       value="<c:out value='${masterRequestList.getRequestId()}'/>">
                                 <c:if test="${masterRequestList.getStatusId() == 3}">
+                                    <input type="hidden" name="requestId"
+                                           value="<c:out value='${masterRequestList.getRequestId()}'/>">
                                     <input type="hidden" name="statusId" value=5>
                                     <button type="submit" class="btn btn-warning">Принять в работу</button>
                                 </c:if>
-                            </td>
-                            <td>
                                 <c:if test="${masterRequestList.getStatusId() == 5}">
+                                    <input type="hidden" name="requestId"
+                                           value="<c:out value='${masterRequestList.getRequestId()}'/>">
                                     <input type="hidden" name="statusId" value=6>
-                                    <button type="submit" class="btn btn-warning">Выполнено</button>
+                                    <button type="submit" class="btn btn-primary">Выполнено</button>
                                 </c:if>
                             </td>
                         </tr>
                     </c:forEach>
-                </form>
-                </tbody>
-            </table>
+                    </tbody>
+                </table>
+            </form>
         </div>
     </div>
 </div>
-<jsp:include page="footer.jsp" />
+<jsp:include page="footer.jsp"/>
 

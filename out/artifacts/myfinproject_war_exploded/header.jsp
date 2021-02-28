@@ -33,7 +33,7 @@
                     </c:if>
                     <c:if test="${sessionScope['roleId'] ==1}">
                         <li class="nav-item">
-                            <a class="nav-link" href="${pageContext.request.contextPath}/manageRequests">Заказы</a>
+                            <a class="nav-link" href="${pageContext.request.contextPath}/manageRequests?page=1">Заказы</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="${pageContext.request.contextPath}/addMoneyList">Заявки на пополнение счёта</a>

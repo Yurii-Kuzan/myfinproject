@@ -19,7 +19,7 @@
                     <th scope="col">Last name</th>
                     <th scope="col">Email</th>
                     <th scope="col">Wallet</th>
-                    <th scope="col" colspan="5">Summ to add</th>
+                    <th scope="col" colspan="5">Sum to add</th>
                 </tr>
                 </thead>
                 <tbody>

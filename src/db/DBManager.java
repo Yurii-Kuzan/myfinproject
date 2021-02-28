@@ -23,11 +23,11 @@ public class DBManager {
     private static final String SELECT_ALL_FROM_USER_REQUESTS = "select request_id,service_name,cost,service_request.status_id,status_name,request_date,feedback from service_request inner join services on services.service_id=service_request.service_id inner join request_statuses on request_statuses.status_id=service_request.status_id where service_request.user_id=?;";
     private static final String SELECT_SAULT_BY_EMAIL="select users.sault from users where login = ?;";
     private static final String SELECT_ALL_LOGINS="select login from users;";
-    private static final String SELECT_ALL_FROM_USERS_REQUESTS="select request_id,firstname,lastname,service_name,cost,service_request.status_id,status_name,request_date,feedback from service_request inner join users on users.user_id=service_request.user_id inner join services on services.service_id=service_request.service_id inner join request_statuses on request_statuses.status_id=service_request.status_id order by service_request.request_id;";
+    private static final String SELECT_ALL_FROM_USERS_REQUESTS="select request_id,firstname,lastname,service_name,cost,service_request.status_id,status_name,request_date,feedback from service_request inner join users on users.user_id=service_request.user_id inner join services on services.service_id=service_request.service_id inner join request_statuses on request_statuses.status_id=service_request.status_id order by service_request.request_id limit ?, 7;";
     private static final String SELECT_REQUESTS_FOR_MASTER="select request_id,firstname,lastname,service_name,cost,service_request.status_id,status_name,request_date,feedback from service_request inner join users on users.user_id=service_request.user_id inner join services on services.service_id=service_request.service_id inner join request_statuses on request_statuses.status_id=service_request.status_id where master_id=?;";
     private static final String UPDATE_REQUEST_STATUS="update service_request set cost=?,status_id=?,master_id=? where request_id=?;";
     private static final String SELECT_MASTERS="select user_id,lastname from users where role_id=2;";
-    private static final String UPDATE_REQUEST_STATUS_BY_MASTER="update service_request set status_id=? where request_id=?;";
+    private static final String UPDATE_REQUEST_STATUS_BY_MASTER="update service_request set service_request.status_id=? where service_request.request_id=?;";
     private static final String SELECT_WALLET_BY_ID="select wallet,add_money from users where user_id=?;";
     private static final String REQUEST_ADD_MONEY="update users set add_money=? where user_id=?;";
     private static final String ADD_MONEY_LIST="select user_id,firstname,lastname,login,wallet,add_money from users where add_money>0;";
@@ -38,6 +38,10 @@ public class DBManager {
     private static final String SELECT_USER_WALLET="select wallet from users where user_id=?;";
     private static final String PAYMENT_SET_STATUS="update service_request set status_id=3 where request_id=?;";
     private static final String PAYMENT_SET_WALLET="update users set wallet=? where user_id=?;";
+    private static final String REPORT_BY_DATE="select request_id,firstname,lastname,service_name,cost,service_request.status_id,status_name,request_date,feedback from service_request inner join users on users.user_id=service_request.user_id inner join services on services.service_id=service_request.service_id inner join request_statuses on request_statuses.status_id=service_request.status_id order by service_request.request_date;";
+    private static final String REPORT_BY_STATUS="select request_id,firstname,lastname,service_name,cost,service_request.status_id,status_name,request_date,feedback from service_request inner join users on users.user_id=service_request.user_id inner join services on services.service_id=service_request.service_id inner join request_statuses on request_statuses.status_id=service_request.status_id order by service_request.status_id;";
+    private static final String REPORT_BY_COST="select request_id,firstname,lastname,service_name,cost,service_request.status_id,status_name,request_date,feedback from service_request inner join users on users.user_id=service_request.user_id inner join services on services.service_id=service_request.service_id inner join request_statuses on request_statuses.status_id=service_request.status_id order by service_request.cost;";
+    private static final String COUNT_OF_ROWS_IN_REQUESTS="SELECT COUNT(1) AS total from service_request inner join users on users.user_id=service_request.user_id inner join services on services.service_id=service_request.service_id inner join request_statuses on request_statuses.status_id=service_request.status_id;";
 
 
     private static DBManager dbManager;
@@ -58,7 +62,7 @@ public class DBManager {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
-            System.out.println("Connected!!!");
+            //System.out.println("Connected!!!");
         } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         }
@@ -225,13 +229,14 @@ public class DBManager {
         return requests;
     }
 
-    public List<ManageReq> findAllUsersRequests() throws SQLException {
+    public List<ManageReq> findAllUsersRequests(int start) throws SQLException {
 
         ResultSet rs = null;
         List<ManageReq> allRequests = new ArrayList<>();
         try (Connection connection = getConnection();
 
              PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_FROM_USERS_REQUESTS)) {
+            preparedStatement.setInt(1, start);
             rs = preparedStatement.executeQuery();
 
             while (rs.next()) {
@@ -316,6 +321,118 @@ public class DBManager {
         }
         return allRequests;
     }
+
+    public List<ManageReq> FindReportByDate() throws SQLException {
+
+        ResultSet rs = null;
+        List<ManageReq> allRequests = new ArrayList<>();
+        try (Connection connection = getConnection();
+
+             PreparedStatement preparedStatement = connection.prepareStatement(REPORT_BY_DATE)) {
+            rs = preparedStatement.executeQuery();
+
+            while (rs.next()) {
+                int requestId=rs.getInt("request_id");
+                String firstName=rs.getString("firstname");
+                String lastName=rs.getString("lastname");
+                String serviceName = rs.getString("service_name");
+                int cost = rs.getInt("cost");
+                int statusId=rs.getInt("status_id");
+                String statusName = rs.getString("status_name");
+                String requestDate=rs.getString("request_date");
+                String feedback = rs.getString("feedback");
+                allRequests.add(new ManageReq(requestId,firstName,lastName,serviceName,cost,statusId,statusName,requestDate,feedback));
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }finally {
+            assert rs != null;
+            rs.close();
+        }
+        return allRequests;
+    }
+
+    public List<ManageReq> FindReportByStatus() throws SQLException {
+
+        ResultSet rs = null;
+        List<ManageReq> allRequests = new ArrayList<>();
+        try (Connection connection = getConnection();
+
+             PreparedStatement preparedStatement = connection.prepareStatement(REPORT_BY_STATUS)) {
+            rs = preparedStatement.executeQuery();
+
+            while (rs.next()) {
+                int requestId=rs.getInt("request_id");
+                String firstName=rs.getString("firstname");
+                String lastName=rs.getString("lastname");
+                String serviceName = rs.getString("service_name");
+                int cost = rs.getInt("cost");
+                int statusId=rs.getInt("status_id");
+                String statusName = rs.getString("status_name");
+                String requestDate=rs.getString("request_date");
+                String feedback = rs.getString("feedback");
+                allRequests.add(new ManageReq(requestId,firstName,lastName,serviceName,cost,statusId,statusName,requestDate,feedback));
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }finally {
+            assert rs != null;
+            rs.close();
+        }
+        return allRequests;
+    }
+
+    public List<ManageReq> FindReportByCost() throws SQLException {
+
+        ResultSet rs = null;
+        List<ManageReq> allRequests = new ArrayList<>();
+        try (Connection connection = getConnection();
+
+             PreparedStatement preparedStatement = connection.prepareStatement(REPORT_BY_COST)) {
+            rs = preparedStatement.executeQuery();
+
+            while (rs.next()) {
+                int requestId=rs.getInt("request_id");
+                String firstName=rs.getString("firstname");
+                String lastName=rs.getString("lastname");
+                String serviceName = rs.getString("service_name");
+                int cost = rs.getInt("cost");
+                int statusId=rs.getInt("status_id");
+                String statusName = rs.getString("status_name");
+                String requestDate=rs.getString("request_date");
+                String feedback = rs.getString("feedback");
+                allRequests.add(new ManageReq(requestId,firstName,lastName,serviceName,cost,statusId,statusName,requestDate,feedback));
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }finally {
+            assert rs != null;
+            rs.close();
+        }
+        return allRequests;
+    }
+
+    public int findUsersOrdersCount() throws SQLException {
+
+        ResultSet rs = null;
+        int count = 0;
+        try (Connection connection = getConnection();
+
+                PreparedStatement preparedStatement = connection.prepareStatement(COUNT_OF_ROWS_IN_REQUESTS)) {
+            rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+
+                count = Integer.parseInt(rs.getString("total"));
+            }
+        } catch (SQLException e) {
+            e.getMessage();
+        }finally {
+            assert rs != null;
+            rs.close();
+        }
+        return count;
+    }
+
 
     public int getUserIdByEmail(String email) throws SQLException {
 

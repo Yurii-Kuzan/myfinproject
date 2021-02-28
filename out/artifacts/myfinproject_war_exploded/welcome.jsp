@@ -7,5 +7,5 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <jsp:include page="header.jsp" />
-
+<h2>Заказ успешно обработан/выполнен/принят в работу</h2>
 <jsp:include page="footer.jsp" />

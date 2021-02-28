@@ -20,7 +20,7 @@
                     <thead>
                     <tr>
                         <th scope="col">Wallet</th>
-                        <th scope="col" colspan="2">Summ to add:</th>
+                        <th scope="col" colspan="2">Sum to add:</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -35,6 +35,7 @@
                                             type="number"
                                             name="addMoney"
                                             placeholder="Вы можете пополнить счёт,укажите сумму:"
+                                            required
                                     />
                                 </td>
                                 <td>

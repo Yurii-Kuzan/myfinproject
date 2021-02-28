@@ -9,9 +9,48 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <jsp:include page="header.jsp" />
-<a href="${pageContext.request.contextPath}/manageRequestsByMaster?masterId=2">Заказы мастера Влад</a>
-<a href="${pageContext.request.contextPath}/manageRequestsByMaster?masterId=3">Заказы мастера Олег</a>
-<a href="${pageContext.request.contextPath}/manageRequestsByStatus">Сортировать по статусу заказа</a>
+<div class="col-12 d-flex justify-content-center align-items-center">
+    <div class="container px-4">
+        <div class="row gx-5">
+            <div class="col">
+                <a class="btn btn-primary"
+                   href="${pageContext.request.contextPath}/manageRequestsByMaster?masterId=2"
+                   role="button">Заказы мастера Влад
+                </a>
+            </div>
+            <div class="col">
+                <a class="btn btn-primary"
+                   href="${pageContext.request.contextPath}/manageRequestsByMaster?masterId=3"
+                   role="button">Заказы мастера Олег
+                </a>
+            </div>
+            <div class="col">
+                <a class="btn btn-primary"
+                   href="${pageContext.request.contextPath}/manageRequestsByStatus"
+                   role="button">Сортировать по статусу заказа
+                </a>
+            </div>
+            <div class="col">
+                <a class="btn btn-success"
+                   href="${pageContext.request.contextPath}/saveReport?reportId=1"
+                   role="button">Отчёт по дате
+                </a>
+            </div>
+            <div class="col">
+                <a class="btn btn-success"
+                   href="${pageContext.request.contextPath}/saveReport?reportId=2"
+                   role="button">Отчёт по статусу
+                </a>
+            </div>
+            <div class="col">
+                <a class="btn btn-success"
+                   href="${pageContext.request.contextPath}/saveReport?reportId=3"
+                   role="button">Отчёт по цене
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
 <div class="container">
     <div class="row">
         <div class="col-12">
@@ -30,8 +69,8 @@
                 </tr>
                 </thead>
                 <tbody>
-                <form action="${pageContext.request.contextPath}/updateCostStatus" method="post">
                     <c:forEach var="usersRequestList" items="${usersRequestList}">
+                        <form action="${pageContext.request.contextPath}/updateCostStatus" method="post">
                         <tr>
                             <th scope="row">
                                 <c:out value='${usersRequestList.getRequestId()}'/>
@@ -80,7 +119,7 @@
                                             </option>
                                         </c:forEach>
                                     </select>
-                                    <input class="form-control" type="number" name="cost" placeholder="Укажите цену:"/>
+                                    <input class="form-control" type="number" name="cost" placeholder="Укажите цену:" required/>
                                     <input type="hidden" name="requestId"
                                            value="<c:out value='${usersRequestList.getRequestId()}'/>">
                                     <input type="hidden" name="statusId"
@@ -88,16 +127,27 @@
                                     <button type="submit" class="btn btn-warning">Выбрать</button>
                                 </c:if>
                                 <c:if test="${usersRequestList.getStatusId() != 1}">
-
                                 Цена и мастер уже назначены
-
                                 </c:if>
                             </td>
                         </tr>
+                        </form>
                     </c:forEach>
-                </form>
+
                 </tbody>
             </table>
+        </div>
+        <div class="col-12 d-flex justify-content-center align-items-center">
+            <nav aria-label="...">
+                <ul class="pagination">
+                    <c:forEach var = "i" begin = "1" end = "${requestScope['countPages']}">
+                        <li class="page-item">
+                            <a class="page-link"
+                               href='${pageContext.request.contextPath}/manageRequests?page=${i}'>${i}</a>
+                        </li>
+                    </c:forEach>
+                </ul>
+            </nav>
         </div>
     </div>
 </div>

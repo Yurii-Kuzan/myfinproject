@@ -10,7 +10,8 @@
                     <th scope="col">Name</th>
                     <th scope="col">Cost</th>
                     <th scope="col">Status</th>
-                    <th scope="col" colspan="5">Request Date</th>
+                    <th scope="col">Request Date</th>
+                    <th scope="col" colspan="6">Feedback</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -70,6 +71,7 @@
                                                                 type="text"
                                                                 name="feedback"
                                                                 placeholder="Оставьте отзыв:"
+                                                                required
                                                         />
                                                     </label>
                                                 </div>

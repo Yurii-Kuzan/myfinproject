@@ -9,6 +9,10 @@
         </element>
         <element id="directory" name="lib">
           <element id="library" level="project" name="mysql-connector-java-8.0.23" />
+          <element id="library" level="project" name="poi-3.11" />
+          <element id="library" level="project" name="poi-ooxml-3.11" />
+          <element id="library" level="project" name="poi-ooxml-schemas-3.11" />
+          <element id="library" level="project" name="jstl-1.2" />
         </element>
       </element>
     </root>

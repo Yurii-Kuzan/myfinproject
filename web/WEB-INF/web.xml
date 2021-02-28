@@ -5,7 +5,7 @@
          version="4.0">
     <servlet>
         <servlet-name>ServletLogin</servlet-name>
-        <servlet-class>Servlets.ServletLogin</servlet-class>
+        <servlet-class>Servlets.login.ServletLogin</servlet-class>
     </servlet>
     
     <servlet-mapping>
@@ -14,7 +14,7 @@
     </servlet-mapping>
     <servlet>
         <servlet-name>ServletNewUser</servlet-name>
-        <servlet-class>Servlets.ServletNewUser</servlet-class>
+        <servlet-class>Servlets.login.ServletNewUser</servlet-class>
     </servlet>
 
     <servlet-mapping>
@@ -24,7 +24,7 @@
 
     <servlet>
         <servlet-name>ServletShowServices</servlet-name>
-        <servlet-class>Servlets.ServletShowServices</servlet-class>
+        <servlet-class>Servlets.user.ServletShowServices</servlet-class>
     </servlet>
 
     <servlet-mapping>
@@ -34,7 +34,7 @@
     
     <servlet>
         <servlet-name>ServletInsertRequest</servlet-name>
-        <servlet-class>Servlets.ServletInsertRequest</servlet-class>
+        <servlet-class>Servlets.user.ServletInsertRequest</servlet-class>
     </servlet>
     
     <servlet-mapping>
@@ -44,7 +44,7 @@
 
     <servlet>
         <servlet-name>ServletLogout</servlet-name>
-        <servlet-class>Servlets.ServletLogout</servlet-class>
+        <servlet-class>Servlets.login.ServletLogout</servlet-class>
     </servlet>
 
     <servlet-mapping>
@@ -54,7 +54,7 @@
 
     <servlet>
         <servlet-name>ServletMyRequests</servlet-name>
-        <servlet-class>Servlets.ServletMyRequests</servlet-class>
+        <servlet-class>Servlets.user.ServletMyRequests</servlet-class>
     </servlet>
 
     <servlet-mapping>
@@ -64,7 +64,7 @@
 
     <servlet>
         <servlet-name>ServletManageRequests</servlet-name>
-        <servlet-class>Servlets.ServletManageRequest</servlet-class>
+        <servlet-class>Servlets.admin.ServletManageRequest</servlet-class>
     </servlet>
 
     <servlet-mapping>
@@ -74,7 +74,7 @@
 
     <servlet>
         <servlet-name>ServletManageRequestsByMaster</servlet-name>
-        <servlet-class>Servlets.ServletManageRequestByMaster</servlet-class>
+        <servlet-class>Servlets.admin.ServletManageRequestByMaster</servlet-class>
     </servlet>
 
     <servlet-mapping>
@@ -84,7 +84,7 @@
 
     <servlet>
         <servlet-name>ServletManageRequestsByStatus</servlet-name>
-        <servlet-class>Servlets.ServletManageRequestByStatus</servlet-class>
+        <servlet-class>Servlets.admin.ServletManageRequestByStatus</servlet-class>
     </servlet>
 
     <servlet-mapping>
@@ -94,7 +94,7 @@
 
     <servlet>
         <servlet-name>ServletWorkRequests</servlet-name>
-        <servlet-class>Servlets.ServletWorkRequests</servlet-class>
+        <servlet-class>Servlets.admin.ServletWorkRequests</servlet-class>
     </servlet>
 
     <servlet-mapping>
@@ -104,7 +104,7 @@
 
     <servlet>
         <servlet-name>ServletWallet</servlet-name>
-        <servlet-class>Servlets.ServletWallet</servlet-class>
+        <servlet-class>Servlets.user.ServletWallet</servlet-class>
     </servlet>
 
     <servlet-mapping>
@@ -114,7 +114,7 @@
 
     <servlet>
         <servlet-name>ServletRequestAddMoney</servlet-name>
-        <servlet-class>Servlets.ServletRequestAddMoney</servlet-class>
+        <servlet-class>Servlets.user.ServletRequestAddMoney</servlet-class>
     </servlet>
 
     <servlet-mapping>
@@ -124,7 +124,7 @@
 
     <servlet>
         <servlet-name>ServletAddMoney</servlet-name>
-        <servlet-class>Servlets.ServletAddMoney</servlet-class>
+        <servlet-class>Servlets.admin.ServletAddMoney</servlet-class>
     </servlet>
 
     <servlet-mapping>
@@ -134,7 +134,7 @@
 
     <servlet>
         <servlet-name>ServletCancelRequest</servlet-name>
-        <servlet-class>Servlets.ServletCancelRequest</servlet-class>
+        <servlet-class>Servlets.user.ServletCancelRequest</servlet-class>
     </servlet>
 
     <servlet-mapping>
@@ -144,7 +144,7 @@
 
     <servlet>
         <servlet-name>ServletPayment</servlet-name>
-        <servlet-class>Servlets.ServletPayment</servlet-class>
+        <servlet-class>Servlets.user.ServletPayment</servlet-class>
     </servlet>
 
     <servlet-mapping>
@@ -154,7 +154,7 @@
 
     <servlet>
         <servlet-name>ServletAddMoneyList</servlet-name>
-        <servlet-class>Servlets.ServletAddMoneyList</servlet-class>
+        <servlet-class>Servlets.admin.ServletAddMoneyList</servlet-class>
     </servlet>
 
     <servlet-mapping>
@@ -164,7 +164,7 @@
 
     <servlet>
         <servlet-name>ServletUpdateStatus</servlet-name>
-        <servlet-class>Servlets.ServletUpdateStatus</servlet-class>
+        <servlet-class>Servlets.admin.ServletUpdateStatus</servlet-class>
     </servlet>
 
     <servlet-mapping>
@@ -174,7 +174,7 @@
 
     <servlet>
         <servlet-name>ServletUpdateStatusByMaster</servlet-name>
-        <servlet-class>Servlets.ServletUpdateStatusByMaster</servlet-class>
+        <servlet-class>Servlets.admin.ServletUpdateStatusByMaster</servlet-class>
     </servlet>
 
     <servlet-mapping>
@@ -184,13 +184,66 @@
 
     <servlet>
         <servlet-name>ServletFeedback</servlet-name>
-        <servlet-class>Servlets.ServletFeedback</servlet-class>
+        <servlet-class>Servlets.user.ServletFeedback</servlet-class>
     </servlet>
 
     <servlet-mapping>
         <servlet-name>ServletFeedback</servlet-name>
         <url-pattern>/feedback</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ServletSaveReport</servlet-name>
+        <servlet-class>Servlets.admin.ServletSaveReport</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>ServletSaveReport</servlet-name>
+        <url-pattern>/saveReport</url-pattern>
+    </servlet-mapping>
+
+
+    <filter>
+        <filter-name>Login</filter-name>
+        <filter-class>Filters.FilterLogin</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>Login</filter-name>
+        <url-pattern>/</url-pattern>
+    </filter-mapping>
+
+    <filter>
+        <filter-name>AuthorizationUser</filter-name>
+        <filter-class>Filters.FilterAuthorization</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>AuthorizationUser</filter-name>
+        <url-pattern>/cancelRequest</url-pattern>
+        <url-pattern>/feedback</url-pattern>
+        <url-pattern>/insertRequest</url-pattern>
+        <url-pattern>/myRequests</url-pattern>
+        <url-pattern>/payment</url-pattern>
+        <url-pattern>/moneyRequest</url-pattern>
+        <url-pattern>/show</url-pattern>
+        <url-pattern>/wallet</url-pattern>
+    </filter-mapping>
+
+    <filter>
+        <filter-name>AuthorizationAdmin</filter-name>
+        <filter-class>Filters.FilterAuthorizationAdmin</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>AuthorizationAdmin</filter-name>
+        <url-pattern>/addMoney</url-pattern>
+        <url-pattern>/addMoneyList</url-pattern>
+        <url-pattern>/manageRequests</url-pattern>
+        <url-pattern>/manageRequestsByMaster</url-pattern>
+        <url-pattern>/manageRequestsByStatus</url-pattern>
+        <url-pattern>/saveReport</url-pattern>
+        <url-pattern>/updateCostStatus</url-pattern>
+        <url-pattern>/updateStatusByMaster</url-pattern>
+        <url-pattern>/workRequests</url-pattern>
+    </filter-mapping>
 
 
 </web-app>
