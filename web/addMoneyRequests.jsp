@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%--
   Created by IntelliJ IDEA.
   User: Yurii
@@ -8,18 +9,18 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <jsp:include page="header.jsp" />
-<h2>Заявки на пополнение счёта:</h2>
+<h2> <fmt:message key="add_money_request_h1"/></h2>
 <div class="container">
     <div class="row">
         <div class="col-12">
             <table class="table">
                 <thead>
                 <tr>
-                    <th scope="col">Имя</th>
-                    <th scope="col">Фамилия</th>
-                    <th scope="col">Эл. почта</th>
-                    <th scope="col">Счёт</th>
-                    <th scope="col" colspan="5">Сумма пополнения</th>
+                    <th scope="col"><fmt:message key="home_first_name"/></th>
+                    <th scope="col"><fmt:message key="home_last_name"/></th>
+                    <th scope="col"><fmt:message key="home_email"/></th>
+                    <th scope="col"><fmt:message key="add_money_account"/></th>
+                    <th scope="col" colspan="5"><fmt:message key="add_money_top_up_amount"/></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -47,7 +48,7 @@
                                 <input type="hidden" name="wallet" value="<c:out value='${addMoneyList.getWallet()}'/>">
                                 <input type="hidden" name="addMoney"
                                        value="<c:out value='${addMoneyList.getAddMoney()}'/>">
-                                <button type="submit" class="btn btn-warning">Пополнить</button>
+                                <button type="submit" class="btn btn-warning"><fmt:message key="add_money_top_up"/></button>
                             </td>
                         </tr>
                     </c:forEach>

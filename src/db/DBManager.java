@@ -110,10 +110,11 @@ public class DBManager {
 
 
     public List<Logins> findAllLogins() throws SQLException {
+
         ResultSet rs = null;
         List<Logins> logins = new ArrayList<>();
         try (Connection connection = getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_LOGINS)) {
+            PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_LOGINS)) {
             rs = preparedStatement.executeQuery();
             while (rs.next()) {
                 String login = rs.getString("login");

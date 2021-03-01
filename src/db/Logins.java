@@ -2,12 +2,12 @@ package db;
 import java.util.Objects;
 
 public class Logins {
+
+
     private String login;
+
     public Logins(String login){
         this.login=login;
-    }
-    public Logins createLogins(String login){
-        return new Logins(login);
     }
 
     public String getLogin() {

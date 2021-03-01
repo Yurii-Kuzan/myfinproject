@@ -17,8 +17,6 @@ public class FilterAuthorization implements Filter {
 
     public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain) throws ServletException, IOException {
 
-        resp.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = resp.getWriter();
         HttpServletRequest httpReq = (HttpServletRequest) req;
         HttpServletResponse httpResp = (HttpServletResponse) resp;
         HttpSession session = httpReq.getSession();
@@ -26,7 +24,6 @@ public class FilterAuthorization implements Filter {
         Object role = session.getAttribute("roleId");
 
         if (role == null) {
-            out.print("First of all you should sign in");
             httpResp.sendRedirect("http://localhost:1977/myfinproject_war_exploded/home.jsp");
         }
         else {
@@ -34,11 +31,9 @@ public class FilterAuthorization implements Filter {
             if(roleId == 3){
                 chain.doFilter(req, resp);
             }else{
-                out.print("First of all you should sign in");
-                httpResp.sendRedirect("http://localhost:1977/myfinproject_war_exploded/home.jsp");
+                httpResp.sendRedirect("http://localhost:1977/myfinproject_war_exploded/pageNotAvailable.jsp");
             }
         }
-        out.close();
     }
 
     public void init(FilterConfig config) throws ServletException {

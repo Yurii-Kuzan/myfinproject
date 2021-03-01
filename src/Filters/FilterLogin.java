@@ -28,10 +28,9 @@ public class FilterLogin implements Filter {
 
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws ServletException, IOException {
 
-        response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter();
         HttpServletResponse httpResp = (HttpServletResponse) response;
 
+        PrintWriter out = response.getWriter();
         String login = request.getParameter("user_login");
         String password = request.getParameter("user_password");
         try {
@@ -45,13 +44,14 @@ public class FilterLogin implements Filter {
             if (check(login, sha256(password))) {
                 chain.doFilter(request, response);
             } else {
-                out.print("Sorry login or password error");
-                httpResp.sendRedirect("http://localhost:1977/myfinproject_war_exploded/home.jsp");
+                out.println("<script type=\"text/javascript\">");
+                out.println("alert('Wrong login or password');");
+                out.println("location='http://localhost:1977/myfinproject_war_exploded/home.jsp';");
+                out.println("</script>");
             }
         } catch (SQLException e) {
             LOG.info(e.getMessage());
         }
-        out.close();
     }
 
     public boolean check(String login, String password) throws SQLException {

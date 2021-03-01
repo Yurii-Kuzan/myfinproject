@@ -22,32 +22,35 @@ import java.util.Random;
 
 @WebServlet(name = "/newUser")
 public class ServletNewUser extends HttpServlet {
+
+
     private final DBManager dbManager = DBManager.getInstance();
     private static final String SCR_PAGE = "ISO-8859-1";
     private static final String DST_PAGE = "UTF-8" ;
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        PrintWriter out = response.getWriter();
         String password;
         String login = request.getParameter("login");
         String firstName = encode(request.getParameter("firstname"),SCR_PAGE,DST_PAGE);
         String lastName = encode(request.getParameter("lastname"),SCR_PAGE,DST_PAGE);
         String prepassword = request.getParameter("prepassword");
-        String sault = random();
-        prepassword = prepassword.concat(sault);
+        String salt = random();
+        prepassword = prepassword.concat(salt);
         password = sha256(prepassword);
         int wallet = 0;
         int moneyAdd = 0;
         int roleId = 3;
         try {
             if (check(login)) {
-                try (PrintWriter writer = response.getWriter()) {
-                    writer.println("this email already exists");
-
-                }
+                out.println("<script type=\"text/javascript\">");
+                out.println("alert('User with this email already exists');");
+                out.println("location='http://localhost:1977/myfinproject_war_exploded/home.jsp';");
+                out.println("</script>");
             } else {
-                dbManager.insertUser(Users.createUser(login, firstName, lastName, password, sault, wallet, moneyAdd, roleId));
+                dbManager.insertUser(Users.createUser(login, firstName, lastName, password, salt, wallet, moneyAdd, roleId));
                 response.sendRedirect("http://localhost:1977/myfinproject_war_exploded/home.jsp");
-
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -59,9 +62,8 @@ public class ServletNewUser extends HttpServlet {
         boolean check = false;
         Logins logins = new Logins(login);
         List<Logins> loginsList = dbManager.findAllLogins();
-        Iterator iterator = loginsList.iterator();
-        while (iterator.hasNext()) {
-            if (iterator.next().equals(logins)) {
+        for (Logins value : loginsList) {
+            if (value.equals(logins)) {
                 check = true;
                 break;
             }
@@ -72,11 +74,11 @@ public class ServletNewUser extends HttpServlet {
     public static String sha256(String base) {
         try {
             MessageDigest digest = MessageDigest.getInstance("SHA-256");
-            byte[] hash = digest.digest(base.getBytes("UTF-8"));
+            byte[] hash = digest.digest(base.getBytes(StandardCharsets.UTF_8));
             StringBuffer hexString = new StringBuffer();
 
-            for (int i = 0; i < hash.length; i++) {
-                String hex = Integer.toHexString(0xff & hash[i]);
+            for (byte b : hash) {
+                String hex = Integer.toHexString(0xff & b);
                 if (hex.length() == 1) hexString.append('0');
                 hexString.append(hex);
             }

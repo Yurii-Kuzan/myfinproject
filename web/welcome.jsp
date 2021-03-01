@@ -1,3 +1,4 @@
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
 <%--
   Created by IntelliJ IDEA.
   User: Yurii
@@ -7,5 +8,5 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <jsp:include page="header.jsp" />
-<h2>Заказ успешно обработан/выполнен/принят в работу</h2>
+<h2><fmt:message key="welcome_title"/></h2>
 <jsp:include page="footer.jsp" />

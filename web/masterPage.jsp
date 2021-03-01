@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
 <%--
   Created by IntelliJ IDEA.
   User: Yurii
@@ -16,13 +17,13 @@
                 <table class="table">
                     <thead>
                     <tr>
-                        <th scope="col">Номер заказа</th>
-                        <th scope="col">Имя</th>
-                        <th scope="col">Фамилия</th>
-                        <th scope="col">Предмет ремонта</th>
-                        <th scope="col">Статус</th>
-                        <th scope="col">Дата заказа</th>
-                        <th scope="col" colspan="8">Отзыв</th>
+                        <th scope="col"><fmt:message key="admin_request_number"/></th>
+                        <th scope="col"><fmt:message key="home_first_name"/></th>
+                        <th scope="col"><fmt:message key="home_last_name"/></th>
+                        <th scope="col"><fmt:message key="admin_repair_product"/></th>
+                        <th scope="col"><fmt:message key="admin_status"/></th>
+                        <th scope="col"><fmt:message key="admin_request_date"/></th>
+                        <th scope="col" colspan="8"><fmt:message key="admin_feedback"/></th>
                     </tr>
                     </thead>
                     <tbody>
@@ -56,13 +57,13 @@
                                     <input type="hidden" name="requestId"
                                            value="<c:out value='${masterRequestList.getRequestId()}'/>">
                                     <input type="hidden" name="statusId" value=5>
-                                    <button type="submit" class="btn btn-warning">Принять в работу</button>
+                                    <button type="submit" class="btn btn-warning"><fmt:message key="master_take_to_work"/></button>
                                 </c:if>
                                 <c:if test="${masterRequestList.getStatusId() == 5}">
                                     <input type="hidden" name="requestId"
                                            value="<c:out value='${masterRequestList.getRequestId()}'/>">
                                     <input type="hidden" name="statusId" value=6>
-                                    <button type="submit" class="btn btn-primary">Выполнено</button>
+                                    <button type="submit" class="btn btn-primary"><fmt:message key="master_performed"/></button>
                                 </c:if>
                             </td>
                         </tr>

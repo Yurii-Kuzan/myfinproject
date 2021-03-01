@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
 <%--
   Created by IntelliJ IDEA.
   User: Yurii
@@ -12,15 +13,15 @@
 <div class="container">
     <div class="row">
         <div class="col-12">
-            <h2>Мой счёт:</h2>
+            <h2><fmt:message key="my_wallet_title"/></h2>
         </div>
         <div class="col-12">
             <form action="${pageContext.request.contextPath}/moneyRequest" method="post">
                 <table class="table">
                     <thead>
                     <tr>
-                        <th scope="col">Счёт</th>
-                        <th scope="col" colspan="2">Сумма пополнения:</th>
+                        <th scope="col"><fmt:message key="add_money_account"/></th>
+                        <th scope="col" colspan="2"><fmt:message key="my_wallet_top_up_amount"/></th>
                     </tr>
                     </thead>
                     <tbody>
@@ -34,19 +35,19 @@
                                     <input
                                             type="number"
                                             name="addMoney"
-                                            placeholder="Вы можете пополнить счёт,укажите сумму:"
+                                            placeholder="<fmt:message key="my_wallet_placeholder"/>"
                                             required
                                     />
                                 </td>
                                 <td>
                                     <button type="submit" class="btn btn-success">
-                                        Пополнить
+                                        <fmt:message key="add_money_top_up"/>
                                     </button>
                                 </td>
                             </c:if>
                             <c:if test="${userWallet.getAddMoney() != 0}">
                                 <td>
-                                    Ваша заявка на рассмотрении
+                                    <fmt:message key="my_wallet_request"/>
                                 </td>
                             </c:if>
                         </tr>

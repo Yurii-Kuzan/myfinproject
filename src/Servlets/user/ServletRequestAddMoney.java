@@ -35,7 +35,7 @@ public class ServletRequestAddMoney extends HttpServlet {
         int addMoney=Integer.parseInt(request.getParameter("addMoney"));
         dbManager.RequestAddMoney(userId,addMoney);
 
-        getServletContext().getRequestDispatcher("//wallet").forward(request,response);
+        getServletContext().getRequestDispatcher("/wallet").forward(request,response);
 
     }
 }

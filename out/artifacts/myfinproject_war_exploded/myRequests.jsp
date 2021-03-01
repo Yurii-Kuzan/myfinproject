@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <jsp:include page="header.jsp"/>
 <div class="container">
@@ -7,11 +8,11 @@
             <table class="table">
                 <thead>
                 <tr>
-                    <th scope="col">Пркдмет ремонта</th>
-                    <th scope="col">Цена</th>
-                    <th scope="col">Статус</th>
-                    <th scope="col">Дата заказа</th>
-                    <th scope="col" colspan="6">Отзыв</th>
+                    <th scope="col"><fmt:message key="admin_repair_product"/></th>
+                    <th scope="col"><fmt:message key="admin_price"/></th>
+                    <th scope="col"><fmt:message key="admin_status"/></th>
+                    <th scope="col"><fmt:message key="admin_request_date"/></th>
+                    <th scope="col" colspan="6"><fmt:message key="admin_feedback"/></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -25,7 +26,7 @@
                                 <c:out value='${requestList.getCost()}'/>
                             </c:if>
                             <c:if test="${requestList.getCost() ==0}">
-                                Цена ещё не указана
+                                <fmt:message key="admin_price_not_selected"/>
                             </c:if>
                         </td>
                         <td>
@@ -46,7 +47,7 @@
                                 <!-- Button trigger modal -->
                                 <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                                         data-bs-target="#feedbackModal">
-                                    Оставить отзыв
+                                    <fmt:message key="user_give_feedback"/>
                                 </button>
 
                                 <!-- Modal -->
@@ -61,7 +62,7 @@
                                         <div class="modal-dialog">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <h5 class="modal-title" id="feedbackModalLabel">Оставить отзыв</h5>
+                                                    <h5 class="modal-title" id="feedbackModalLabel"><fmt:message key="user_give_feedback"/></h5>
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                             aria-label="Close"></button>
                                                 </div>
@@ -70,7 +71,7 @@
                                                         <input
                                                                 type="text"
                                                                 name="feedback"
-                                                                placeholder="Оставьте отзыв:"
+                                                                placeholder="<fmt:message key="user_leave_feedback"/>"
                                                                 required
                                                         />
                                                     </label>
@@ -81,9 +82,9 @@
                                                             class="btn btn-secondary"
                                                             data-bs-dismiss="modal"
                                                     >
-                                                        Отмена
+                                                        <fmt:message key="user_dismiss"/>
                                                     </button>
-                                                    <button type="submit" class="btn btn-primary">Отправить</button>
+                                                    <button type="submit" class="btn btn-primary"><fmt:message key="user_send"/></button>
                                                 </div>
                                             </div>
                                         </div>
@@ -104,7 +105,7 @@
                                             name="cost"
                                             value="<c:out value='${requestList.getCost()}'/>"
                                     >
-                                    <button type="submit" class="btn btn-warning">Оплатить</button>
+                                    <button type="submit" class="btn btn-warning"><fmt:message key="user_pay"/></button>
                                 </form>
                             </c:if>
                         </td>
@@ -116,7 +117,7 @@
                                             name="requestId"
                                             value="<c:out value='${requestList.getRequestId()}'/>"
                                     >
-                                    <button type="submit" class="btn btn-danger">Отменить</button>
+                                    <button type="submit" class="btn btn-danger"><fmt:message key="user_cancel"/></button>
                                 </form>
                             </c:if>
                         </td>

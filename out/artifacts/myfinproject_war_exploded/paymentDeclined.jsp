@@ -1,3 +1,4 @@
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
 <%--
   Created by IntelliJ IDEA.
   User: Yurii
@@ -7,5 +8,5 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <jsp:include page="header.jsp" />
-У вас недостаточно денег на счету, пополните счёт в разделе "Мой счёт" и попробуйте снова или отмените заказ
+<fmt:message key="payment_declined_title"/>
 <jsp:include page="footer.jsp" />

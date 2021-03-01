@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <jsp:include page="header.jsp" />
@@ -15,37 +16,37 @@
             <div class="col">
                 <a class="btn btn-primary"
                    href="${pageContext.request.contextPath}/manageRequestsByMaster?masterId=2"
-                   role="button">Заказы мастера Влад
+                   role="button"><fmt:message key="admin_vlad_requests"/>
                 </a>
             </div>
             <div class="col">
                 <a class="btn btn-primary"
                    href="${pageContext.request.contextPath}/manageRequestsByMaster?masterId=3"
-                   role="button">Заказы мастера Олег
+                   role="button"><fmt:message key="admin_oleg_requests"/>
                 </a>
             </div>
             <div class="col">
                 <a class="btn btn-primary"
                    href="${pageContext.request.contextPath}/manageRequestsByStatus"
-                   role="button">Сортировать по статусу заказа
+                   role="button"><fmt:message key="admin_sort_by_status"/>
                 </a>
             </div>
             <div class="col">
                 <a class="btn btn-success"
                    href="${pageContext.request.contextPath}/saveReport?reportId=1"
-                   role="button">Отчёт по дате
+                   role="button"><fmt:message key="admin_report_by_date"/>
                 </a>
             </div>
             <div class="col">
                 <a class="btn btn-success"
                    href="${pageContext.request.contextPath}/saveReport?reportId=2"
-                   role="button">Отчёт по статусу
+                   role="button"><fmt:message key="admin_report_by_status"/>
                 </a>
             </div>
             <div class="col">
                 <a class="btn btn-success"
                    href="${pageContext.request.contextPath}/saveReport?reportId=3"
-                   role="button">Отчёт по цене
+                   role="button"><fmt:message key="admin_report_by_price"/>
                 </a>
             </div>
         </div>
@@ -57,15 +58,15 @@
             <table class="table">
                 <thead>
                 <tr>
-                    <th scope="col">Номер заказа</th>
-                    <th scope="col">Имя</th>
-                    <th scope="col">Фамилия</th>
-                    <th scope="col">Предмет ремонта</th>
-                    <th scope="col">Цена</th>
-                    <th scope="col">Статус</th>
-                    <th scope="col">Дата заказа</th>
-                    <th scope="col">Отзыв</th>
-                    <th scope="col" colspan="8">Укажите мастера и цену</th>
+                    <th scope="col"><fmt:message key="admin_request_number"/></th>
+                    <th scope="col"><fmt:message key="home_first_name"/></th>
+                    <th scope="col"><fmt:message key="home_last_name"/></th>
+                    <th scope="col"><fmt:message key="admin_repair_product"/></th>
+                    <th scope="col"><fmt:message key="admin_price"/></th>
+                    <th scope="col"><fmt:message key="admin_status"/></th>
+                    <th scope="col"><fmt:message key="admin_request_date"/></th>
+                    <th scope="col"><fmt:message key="admin_feedback"/></th>
+                    <th scope="col" colspan="8"><fmt:message key="admin_select"/></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -90,7 +91,7 @@
                                 </c:if>
                                 <c:if test="${usersRequestList.getCost() ==0}">
 
-                                Цена не указана
+                                <fmt:message key="admin_price_not_selected"/>
 
                                 </c:if>
                             </td>
@@ -106,7 +107,7 @@
                                 </c:if>
                                 <c:if test="${usersRequestList.getFeedback() ==null}">
 
-                                Отзыв не указан
+                                    <fmt:message key="admin_feedback_not_selected"/>
 
                                 </c:if>
                             </td>
@@ -119,15 +120,15 @@
                                             </option>
                                         </c:forEach>
                                     </select>
-                                    <input class="form-control" type="number" name="cost" placeholder="Укажите цену:" required/>
+                                    <input class="form-control" type="number" name="cost" placeholder="<fmt:message key="admin_select_price"/>" required/>
                                     <input type="hidden" name="requestId"
                                            value="<c:out value='${usersRequestList.getRequestId()}'/>">
                                     <input type="hidden" name="statusId"
                                            value="<c:out value='${usersRequestList.getStatusId()}'/>">
-                                    <button type="submit" class="btn btn-warning">Выбрать</button>
+                                    <button type="submit" class="btn btn-warning"><fmt:message key="admin_select_button"/></button>
                                 </c:if>
                                 <c:if test="${usersRequestList.getStatusId() != 1}">
-                                Цена и мастер уже назначены
+                                    <fmt:message key="admin_info_selected"/>
                                 </c:if>
                             </td>
                         </tr>
