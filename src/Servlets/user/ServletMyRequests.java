@@ -1,7 +1,6 @@
 package Servlets.user;
 
 import db.DBManager;
-import db.entity.Request;
 import db.entity.UserReq;
 
 import javax.servlet.ServletException;
@@ -11,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -25,6 +25,7 @@ public class ServletMyRequests extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 
+        Connection connection = dbManager.getConnection();
         HttpSession session = request.getSession(false);
         int userId = 0;
 
@@ -35,7 +36,7 @@ public class ServletMyRequests extends HttpServlet {
         List<UserReq> requestList = null;
 
         try {
-            requestList = dbManager.findAllUserRequests(userId);
+            requestList = dbManager.findAllUserRequests(connection,userId);
         } catch (SQLException throwable) {
             throwable.printStackTrace();
         }

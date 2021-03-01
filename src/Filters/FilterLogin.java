@@ -7,11 +7,11 @@ import org.apache.log4j.Logger;
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -28,13 +28,14 @@ public class FilterLogin implements Filter {
 
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws ServletException, IOException {
 
+        Connection connection = dbManager.getConnection();
         HttpServletResponse httpResp = (HttpServletResponse) response;
 
         PrintWriter out = response.getWriter();
         String login = request.getParameter("user_login");
         String password = request.getParameter("user_password");
         try {
-            String salt = dbManager.getUserSaultByEmail(login);
+            String salt = dbManager.getUserSaultByEmail(connection,login);
             password = password.concat(salt);
         } catch (SQLException e) {
             LOG.info(e.getMessage());
@@ -56,9 +57,10 @@ public class FilterLogin implements Filter {
 
     public boolean check(String login, String password) throws SQLException {
 
+        Connection connection = dbManager.getConnection();
         boolean check = false;
         Users users = new Users(login, password);
-        List<Users> usersList = dbManager.findUserEmailPass();
+        List<Users> usersList = dbManager.findUserEmailPass(connection);
         for (Users value : usersList) {
             if (value.equals(users)) {
                 check = true;

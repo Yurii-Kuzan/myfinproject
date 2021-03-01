@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -18,8 +19,9 @@ public class ServletAddMoneyList extends HttpServlet {
             throws ServletException, IOException {
 
         DBManager dbManager = new DBManager();
+        Connection connection = dbManager.getConnection();
         try {
-            List<Users> addMoneyList = dbManager.AddMoneyList();
+            List<Users> addMoneyList = dbManager.AddMoneyList(connection);
             request.setAttribute("addMoneyList", addMoneyList);
         } catch (SQLException e) {
             e.printStackTrace();

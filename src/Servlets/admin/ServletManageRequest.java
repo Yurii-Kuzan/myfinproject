@@ -3,16 +3,14 @@ package Servlets.admin;
 import db.DBManager;
 import db.entity.ManageReq;
 import db.entity.Master;
-import db.entity.Request;
-import db.entity.UserReq;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -27,7 +25,7 @@ public class ServletManageRequest extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 
-
+        Connection connection = dbManager.getConnection();
         List<ManageReq> usersRequestList = null;
         List<Master> listMasters=null;
 
@@ -48,7 +46,7 @@ public class ServletManageRequest extends HttpServlet {
         int start = 0;
 
         try {
-            countRows = DBManager.getInstance().findUsersOrdersCount();
+            countRows = DBManager.getInstance().findUsersOrdersCount(connection);
 
         } catch (SQLException e) {
             e.getMessage();
@@ -61,12 +59,12 @@ public class ServletManageRequest extends HttpServlet {
         }
 
         try {
-            usersRequestList = dbManager.findAllUsersRequests(start);
+            usersRequestList = dbManager.findAllUsersRequests(connection,start);
         } catch (SQLException throwable) {
             throwable.printStackTrace();
         }
         try {
-            listMasters = dbManager.listMasters();
+            listMasters = dbManager.listMasters(connection);
         } catch (SQLException throwable) {
             throwable.printStackTrace();
         }

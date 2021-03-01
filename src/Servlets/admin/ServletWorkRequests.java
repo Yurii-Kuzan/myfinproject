@@ -2,8 +2,6 @@ package Servlets.admin;
 
 import db.DBManager;
 import db.entity.ManageReq;
-import db.entity.Request;
-import db.entity.UserReq;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -27,6 +26,7 @@ public class ServletWorkRequests extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 
 
+        Connection connection = dbManager.getConnection();
         HttpSession session = request.getSession(false);
         int masterId = 0;
 
@@ -36,7 +36,7 @@ public class ServletWorkRequests extends HttpServlet {
         List<ManageReq> masterRequestList = null;
 
         try {
-            masterRequestList = dbManager.findAllMasterRequests(masterId);
+            masterRequestList = dbManager.findAllMasterRequests(connection,masterId);
         } catch (SQLException throwable) {
             throwable.printStackTrace();
         }

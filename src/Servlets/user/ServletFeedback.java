@@ -7,10 +7,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.sql.SQLException;
-import java.util.List;
+import java.sql.Connection;
 
 @WebServlet(name = "/feedback")
 public class ServletFeedback extends HttpServlet {
@@ -26,12 +24,13 @@ public class ServletFeedback extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 
 
+        Connection connection = dbManager.getConnection();
         int requestId=Integer.parseInt(request.getParameter("requestId"));
 
         String feedback = encode(request.getParameter("feedback"),SCR_PAGE,DST_PAGE);
 
 
-        dbManager.UpdateFeedback(requestId,feedback);
+        dbManager.UpdateFeedback(connection,requestId,feedback);
 
         getServletContext().getRequestDispatcher("/myRequests").forward(request,response);
 

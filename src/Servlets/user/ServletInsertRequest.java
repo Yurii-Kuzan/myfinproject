@@ -2,7 +2,6 @@ package Servlets.user;
 
 import db.DBManager;
 import db.entity.Request;
-import db.entity.Users;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.sql.Connection;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -34,7 +34,8 @@ public class ServletInsertRequest extends HttpServlet {
             userId = (int) session.getAttribute("id");
         }
         DBManager dbManager = DBManager.getInstance();
-        dbManager.insertRequest(Request.createRequest(userId,serviceId,statusId,requestDate));
+        Connection connection = dbManager.getConnection();
+        dbManager.insertRequest(connection,Request.createRequest(userId,serviceId,statusId,requestDate));
         getServletContext().getRequestDispatcher("/myRequests").forward(request,response);
 
 

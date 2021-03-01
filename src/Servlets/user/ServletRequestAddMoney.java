@@ -1,9 +1,6 @@
 package Servlets.user;
 
 import db.DBManager;
-import db.entity.ManageReq;
-import db.entity.Request;
-import db.entity.UserReq;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,8 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.sql.SQLException;
-import java.util.List;
+import java.sql.Connection;
 
 @WebServlet(name = "/moneyRequest")
 public class ServletRequestAddMoney extends HttpServlet {
@@ -26,6 +22,7 @@ public class ServletRequestAddMoney extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 
+        Connection connection = dbManager.getConnection();
         HttpSession session = request.getSession(false);
         int userId = 0;
 
@@ -33,7 +30,7 @@ public class ServletRequestAddMoney extends HttpServlet {
             userId = (int) session.getAttribute("id");
         }
         int addMoney=Integer.parseInt(request.getParameter("addMoney"));
-        dbManager.RequestAddMoney(userId,addMoney);
+        dbManager.RequestAddMoney(connection,userId,addMoney);
 
         getServletContext().getRequestDispatcher("/wallet").forward(request,response);
 

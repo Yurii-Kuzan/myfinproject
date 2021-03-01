@@ -7,8 +7,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.sql.Connection;
 
 @WebServlet(name = "/cancelRequest")
 public class ServletCancelRequest extends HttpServlet {
@@ -21,11 +21,12 @@ public class ServletCancelRequest extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 
+        Connection connection = dbManager.getConnection();
         int requestId=Integer.parseInt(request.getParameter("requestId"));
         int statusId=4;
 
 
-        dbManager.CancelRequest(requestId,statusId);
+        dbManager.CancelRequest(connection,requestId,statusId);
 
         getServletContext().getRequestDispatcher("/myRequests").forward(request,response);
 

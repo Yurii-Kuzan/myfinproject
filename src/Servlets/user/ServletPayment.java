@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.sql.Connection;
 import java.sql.SQLException;
 
 @WebServlet(name = "/payment")
@@ -22,6 +23,7 @@ public class ServletPayment extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 
+        Connection connection = dbManager.getConnection();
         HttpSession session = request.getSession(false);
         int userId = 0;
         int requestId = Integer.parseInt(request.getParameter("requestId"));
@@ -32,11 +34,11 @@ public class ServletPayment extends HttpServlet {
         }
 
         try {
-            int wallet = dbManager.getWallet(userId);
+            int wallet = dbManager.getWallet(connection,userId);
             int afterWallet = wallet - cost;
             if (afterWallet >= 0) {
-                dbManager.PaymentSetWallet(userId, afterWallet);
-                dbManager.PaymentSetStatus(requestId);
+                dbManager.PaymentSetWallet(connection,userId, afterWallet);
+                dbManager.PaymentSetStatus(connection,requestId);
                 getServletContext().getRequestDispatcher("/myRequests").forward(request, response);
             } else {
                 response.sendRedirect("http://localhost:1977/myfinproject_war_exploded/paymentDeclined.jsp");

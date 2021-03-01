@@ -1,9 +1,6 @@
 package Servlets.user;
 
 import db.DBManager;
-import db.entity.ManageReq;
-import db.entity.Request;
-import db.entity.UserReq;
 import db.entity.Wallet;
 
 import javax.servlet.ServletException;
@@ -13,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,6 +26,7 @@ public class ServletWallet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 
+        Connection connection = dbManager.getConnection();
         HttpSession session = request.getSession(false);
         int userId = 0;
         List<Wallet> userWallet = new ArrayList<>();
@@ -36,7 +35,7 @@ public class ServletWallet extends HttpServlet {
         }
 
         try {
-            userWallet = dbManager.getUserWallet(userId);
+            userWallet = dbManager.getUserWallet(connection,userId);
         } catch (SQLException throwable) {
             throwable.printStackTrace();
         }

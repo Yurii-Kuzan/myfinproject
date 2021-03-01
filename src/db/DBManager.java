@@ -1,6 +1,5 @@
 package db;
 
-import Listener.ListenerContext;
 import db.entity.*;
 import org.apache.log4j.Logger;
 
@@ -22,7 +21,6 @@ public class DBManager {
     private static final String SELECT_USER_ID_BY_EMAIL = "select users.user_id from users where login = ?;";
     private static final String SELECT_ROLE_ID_BY_EMAIL = "select users.role_id from users where login = ?;";
     private static final String SELECT_ALL_FROM_USER = "select * from users;";
-    //private static final String SELECT_ALL_FROM_REQUESTS = "select * from service_request;";
     private static final String SELECT_ALL_FROM_USER_REQUESTS = "select request_id,service_name,cost,service_request.status_id,status_name,request_date,feedback from service_request inner join services on services.service_id=service_request.service_id inner join request_statuses on request_statuses.status_id=service_request.status_id where service_request.user_id=?;";
     private static final String SELECT_SAULT_BY_EMAIL = "select users.sault from users where login = ?;";
     private static final String SELECT_ALL_LOGINS = "select login from users;";
@@ -73,10 +71,10 @@ public class DBManager {
         return connection;
     }
 
-    public void insertUser(Users users) {
+    public boolean insertUser(Connection connection,Users users) {
 
-        try (Connection connection = getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(INSERT_NEW_USER)) {
+        boolean insert = false;
+        try (PreparedStatement preparedStatement = connection.prepareStatement(INSERT_NEW_USER)) {
             preparedStatement.setString(1, users.getLogin());
             preparedStatement.setString(2, users.getFirstName());
             preparedStatement.setString(3, users.getLastName());
@@ -85,36 +83,36 @@ public class DBManager {
             preparedStatement.setInt(6, users.getWallet());
             preparedStatement.setInt(7, users.getAddMoney());
             preparedStatement.setInt(8, users.getRoleId());
-            preparedStatement.executeUpdate();
+            insert = preparedStatement.executeUpdate() > 0;
             LOG.info("New user inserted");
         } catch (SQLException e) {
             LOG.info(e.getMessage());
         }
+        return insert;
     }
 
-    public void insertRequest(Request request) {
+    public boolean insertRequest(Connection connection,Request request) {
 
-        try (Connection connection = getConnection();
-
-             PreparedStatement preparedStatement = connection.prepareStatement(INSERT_NEW_REQUEST)) {
+        boolean insert = false;
+        try (PreparedStatement preparedStatement = connection.prepareStatement(INSERT_NEW_REQUEST)) {
             preparedStatement.setInt(1, request.getUserId());
             preparedStatement.setInt(2, request.getServiceId());
             preparedStatement.setInt(3, request.getStatusId());
             preparedStatement.setString(4, request.getRequestDate());
-            preparedStatement.executeUpdate();
+            insert = preparedStatement.executeUpdate() > 0;
             LOG.info("New request inserted");
         } catch (SQLException e) {
             LOG.info(e.getMessage());
         }
+        return insert;
     }
 
 
-    public List<Logins> findAllLogins() throws SQLException {
+    public List<Logins> findAllLogins(Connection connection) throws SQLException {
 
         ResultSet rs = null;
         List<Logins> logins = new ArrayList<>();
-        try (Connection connection = getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_LOGINS)) {
+        try (PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_LOGINS)) {
             rs = preparedStatement.executeQuery();
             while (rs.next()) {
                 String login = rs.getString("login");
@@ -133,11 +131,10 @@ public class DBManager {
 
     }
 
-    public List<Services> list() throws SQLException {
+    public List<Services> list(Connection connection) throws SQLException {
         ResultSet rs = null;
         List<Services> listServices = new ArrayList<>();
-        try (Connection connection = getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_FROM_SERVICES)) {
+        try (PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_FROM_SERVICES)) {
             rs = preparedStatement.executeQuery();
             while (rs.next()) {
                 String serviceName = rs.getString("service_name");
@@ -155,13 +152,11 @@ public class DBManager {
         return listServices;
     }
 
-    public List<Users> findUserEmailPass() throws SQLException {
+    public List<Users> findUserEmailPass(Connection connection) throws SQLException {
 
         ResultSet rs = null;
         List<Users> users = new ArrayList<>();
-        try (Connection connection = getConnection();
-
-             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_FROM_USER)) {
+        try (PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_FROM_USER)) {
             rs = preparedStatement.executeQuery();
             while (rs.next()) {
                 String login = rs.getString("login");
@@ -180,13 +175,11 @@ public class DBManager {
     }
 
 
-    public List<UserReq> findAllUserRequests(int userId) throws SQLException {
+    public List<UserReq> findAllUserRequests(Connection connection,int userId) throws SQLException {
 
         ResultSet rs = null;
         List<UserReq> requests = new ArrayList<>();
-        try (Connection connection = getConnection();
-
-             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_FROM_USER_REQUESTS)) {
+        try (PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_FROM_USER_REQUESTS)) {
             preparedStatement.setInt(1, userId);
             rs = preparedStatement.executeQuery();
 
@@ -210,13 +203,11 @@ public class DBManager {
         return requests;
     }
 
-    public List<ManageReq> findAllUsersRequests(int start) throws SQLException {
+    public List<ManageReq> findAllUsersRequests(Connection connection,int start) throws SQLException {
 
         ResultSet rs = null;
         List<ManageReq> allRequests = new ArrayList<>();
-        try (Connection connection = getConnection();
-
-             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_FROM_USERS_REQUESTS)) {
+        try (PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_FROM_USERS_REQUESTS)) {
             preparedStatement.setInt(1, start);
             rs = preparedStatement.executeQuery();
 
@@ -243,13 +234,11 @@ public class DBManager {
     }
 
 
-    public List<ManageReq> findAllUsersRequestsByStatus() throws SQLException {
+    public List<ManageReq> findAllUsersRequestsByStatus(Connection connection) throws SQLException {
 
         ResultSet rs = null;
         List<ManageReq> allRequests = new ArrayList<>();
-        try (Connection connection = getConnection();
-
-             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_FROM_USERS_REQUESTS_BY_DATE)) {
+        try (PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_FROM_USERS_REQUESTS_BY_DATE)) {
             rs = preparedStatement.executeQuery();
 
             while (rs.next()) {
@@ -274,13 +263,11 @@ public class DBManager {
         return allRequests;
     }
 
-    public List<ManageReq> findAllMasterRequests(int masterId) throws SQLException {
+    public List<ManageReq> findAllMasterRequests(Connection connection,int masterId) throws SQLException {
 
         ResultSet rs = null;
         List<ManageReq> allRequests = new ArrayList<>();
-        try (Connection connection = getConnection();
-
-             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_REQUESTS_FOR_MASTER)) {
+        try (PreparedStatement preparedStatement = connection.prepareStatement(SELECT_REQUESTS_FOR_MASTER)) {
             preparedStatement.setInt(1, masterId);
             rs = preparedStatement.executeQuery();
 
@@ -306,13 +293,11 @@ public class DBManager {
         return allRequests;
     }
 
-    public List<ManageReq> FindReportByDate() throws SQLException {
+    public List<ManageReq> FindReportByDate(Connection connection) throws SQLException {
 
         ResultSet rs = null;
         List<ManageReq> allRequests = new ArrayList<>();
-        try (Connection connection = getConnection();
-
-             PreparedStatement preparedStatement = connection.prepareStatement(REPORT_BY_DATE)) {
+        try (PreparedStatement preparedStatement = connection.prepareStatement(REPORT_BY_DATE)) {
             rs = preparedStatement.executeQuery();
 
             while (rs.next()) {
@@ -337,13 +322,11 @@ public class DBManager {
         return allRequests;
     }
 
-    public List<ManageReq> FindReportByStatus() throws SQLException {
+    public List<ManageReq> FindReportByStatus(Connection connection) throws SQLException {
 
         ResultSet rs = null;
         List<ManageReq> allRequests = new ArrayList<>();
-        try (Connection connection = getConnection();
-
-             PreparedStatement preparedStatement = connection.prepareStatement(REPORT_BY_STATUS)) {
+        try (PreparedStatement preparedStatement = connection.prepareStatement(REPORT_BY_STATUS)) {
             rs = preparedStatement.executeQuery();
 
             while (rs.next()) {
@@ -368,13 +351,11 @@ public class DBManager {
         return allRequests;
     }
 
-    public List<ManageReq> FindReportByCost() throws SQLException {
+    public List<ManageReq> FindReportByCost(Connection connection) throws SQLException {
 
         ResultSet rs = null;
         List<ManageReq> allRequests = new ArrayList<>();
-        try (Connection connection = getConnection();
-
-             PreparedStatement preparedStatement = connection.prepareStatement(REPORT_BY_COST)) {
+        try (PreparedStatement preparedStatement = connection.prepareStatement(REPORT_BY_COST)) {
             rs = preparedStatement.executeQuery();
 
             while (rs.next()) {
@@ -399,13 +380,11 @@ public class DBManager {
         return allRequests;
     }
 
-    public int findUsersOrdersCount() throws SQLException {
+    public int findUsersOrdersCount(Connection connection) throws SQLException {
 
         ResultSet rs = null;
         int count = 0;
-        try (Connection connection = getConnection();
-
-             PreparedStatement preparedStatement = connection.prepareStatement(COUNT_OF_ROWS_IN_REQUESTS)) {
+        try (PreparedStatement preparedStatement = connection.prepareStatement(COUNT_OF_ROWS_IN_REQUESTS)) {
             rs = preparedStatement.executeQuery();
             while (rs.next()) {
 
@@ -422,14 +401,12 @@ public class DBManager {
     }
 
 
-    public int getUserIdByEmail(String email) throws SQLException {
+    public int getUserIdByEmail(Connection connection,String email) throws SQLException {
 
         ResultSet rs = null;
         int id = 0;
 
-        try (Connection connection = getConnection();
-
-             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_USER_ID_BY_EMAIL)) {
+        try (PreparedStatement preparedStatement = connection.prepareStatement(SELECT_USER_ID_BY_EMAIL)) {
             preparedStatement.setString(1, email);
             rs = preparedStatement.executeQuery();
 
@@ -447,15 +424,13 @@ public class DBManager {
         return id;
     }
 
-    public List<Wallet> getUserWallet(int userId) throws SQLException {
+    public List<Wallet> getUserWallet(Connection connection,int userId) throws SQLException {
 
         ResultSet rs = null;
         List<Wallet> userWallet = new ArrayList<>();
         int wallet = 0;
 
-        try (Connection connection = getConnection();
-
-             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_WALLET_BY_ID)) {
+        try (PreparedStatement preparedStatement = connection.prepareStatement(SELECT_WALLET_BY_ID)) {
             preparedStatement.setInt(1, userId);
             rs = preparedStatement.executeQuery();
 
@@ -475,13 +450,11 @@ public class DBManager {
         return userWallet;
     }
 
-    public List<Users> AddMoneyList() throws SQLException {
+    public List<Users> AddMoneyList(Connection connection) throws SQLException {
 
         ResultSet rs = null;
         List<Users> addMoneyList = new ArrayList<>();
-        try (Connection connection = getConnection();
-
-             PreparedStatement preparedStatement = connection.prepareStatement(ADD_MONEY_LIST)) {
+        try (PreparedStatement preparedStatement = connection.prepareStatement(ADD_MONEY_LIST)) {
             rs = preparedStatement.executeQuery();
 
             while (rs.next()) {
@@ -503,88 +476,87 @@ public class DBManager {
         return addMoneyList;
     }
 
-    public void AddingMoney(int userId, int wallet, int addMoney) {
-        wallet += addMoney;
-        try (Connection connection = getConnection();
+    public boolean AddingMoney(Connection connection,int userId, int wallet, int addMoney) {
 
-             PreparedStatement preparedStatement = connection.prepareStatement(ADDING_MONEY)) {
+        boolean insert = false;
+        wallet += addMoney;
+        try (PreparedStatement preparedStatement = connection.prepareStatement(ADDING_MONEY)) {
             preparedStatement.setInt(1, wallet);
             preparedStatement.setInt(2, userId);
-            preparedStatement.executeUpdate();
+            insert = preparedStatement.executeUpdate() > 0;
             LOG.info("Add money to user");
         } catch (SQLException e) {
             LOG.info(e.getMessage());
 
         }
+        return insert;
     }
 
-    public void UpdateFeedback(int requestId, String feedback) {
+    public boolean UpdateFeedback(Connection connection,int requestId, String feedback) {
 
-        try (Connection connection = getConnection();
-
-             PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_FEEDBACK)) {
+        boolean insert = false;
+        try (PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_FEEDBACK)) {
             preparedStatement.setString(1, feedback);
             preparedStatement.setInt(2, requestId);
-            preparedStatement.executeUpdate();
+            insert = preparedStatement.executeUpdate() > 0;
             LOG.info("Giving a feedback");
         } catch (SQLException e) {
             LOG.info(e.getMessage());
 
         }
+        return insert;
     }
 
-    public void PaymentSetStatus(int requestId) {
+    public boolean PaymentSetStatus(Connection connection,int requestId) {
 
-        try (Connection connection = getConnection();
-
-             PreparedStatement preparedStatement = connection.prepareStatement(PAYMENT_SET_STATUS)) {
+        boolean insert = false;
+        try (PreparedStatement preparedStatement = connection.prepareStatement(PAYMENT_SET_STATUS)) {
             preparedStatement.setInt(1, requestId);
-            preparedStatement.executeUpdate();
+            insert = preparedStatement.executeUpdate() > 0;
             LOG.info("Setting status payed");
         } catch (SQLException e) {
             LOG.info(e.getMessage());
 
         }
+        return insert;
     }
 
-    public void PaymentSetWallet(int userId, int wallet) {
+    public boolean PaymentSetWallet(Connection connection,int userId, int wallet) {
 
-        try (Connection connection = getConnection();
-
-             PreparedStatement preparedStatement = connection.prepareStatement(PAYMENT_SET_WALLET)) {
+        boolean insert = false;
+        try (PreparedStatement preparedStatement = connection.prepareStatement(PAYMENT_SET_WALLET)) {
             preparedStatement.setInt(1, wallet);
             preparedStatement.setInt(2, userId);
-            preparedStatement.executeUpdate();
+            insert = preparedStatement.executeUpdate() > 0;
             LOG.info("Getting money from user");
         } catch (SQLException e) {
             LOG.info(e.getMessage());
 
         }
+        return insert;
     }
 
-    public void CancelRequest(int requestId, int statusId) {
+    public boolean CancelRequest(Connection connection,int requestId, int statusId) {
 
-        try (Connection connection = getConnection();
-
-             PreparedStatement preparedStatement = connection.prepareStatement(CANCEL_REQUEST)) {
+        boolean insert = false;
+        try (PreparedStatement preparedStatement = connection.prepareStatement(CANCEL_REQUEST)) {
             preparedStatement.setInt(1, statusId);
             preparedStatement.setInt(2, requestId);
-            preparedStatement.executeUpdate();
+            insert = preparedStatement.executeUpdate() > 0;
             LOG.info("Request cancelled");
         } catch (SQLException e) {
             LOG.info(e.getMessage());
 
         }
+        return insert;
     }
 
-    public int getUserRoleIdByEmail(String email) throws SQLException {
+    public int getUserRoleIdByEmail(Connection connection,String email) throws SQLException {
 
         ResultSet rs = null;
         int roleId = 0;
 
-        try (Connection connection = getConnection();
-
-             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ROLE_ID_BY_EMAIL)) {
+        try (PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ROLE_ID_BY_EMAIL)) {
             preparedStatement.setString(1, email);
             rs = preparedStatement.executeQuery();
 
@@ -602,14 +574,12 @@ public class DBManager {
         return roleId;
     }
 
-    public int getWallet(int userId) throws SQLException {
+    public int getWallet(Connection connection,int userId) throws SQLException {
 
         ResultSet rs = null;
         int wallet = 0;
 
-        try (Connection connection = getConnection();
-
-             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_USER_WALLET)) {
+        try (PreparedStatement preparedStatement = connection.prepareStatement(SELECT_USER_WALLET)) {
             preparedStatement.setInt(1, userId);
             rs = preparedStatement.executeQuery();
 
@@ -626,14 +596,12 @@ public class DBManager {
         return wallet;
     }
 
-    public String getUserSaultByEmail(String email) throws SQLException {
+    public String getUserSaultByEmail(Connection connection,String email) throws SQLException {
 
         ResultSet rs = null;
         String sault = null;
 
-        try (Connection connection = getConnection();
-
-             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_SAULT_BY_EMAIL)) {
+        try (PreparedStatement preparedStatement = connection.prepareStatement(SELECT_SAULT_BY_EMAIL)) {
             preparedStatement.setString(1, email);
             rs = preparedStatement.executeQuery();
 
@@ -650,56 +618,55 @@ public class DBManager {
         return sault;
     }
 
-    public void RequestAddMoney(int userId, int addMoney) {
-        try (Connection connection = getConnection();
+    public boolean RequestAddMoney(Connection connection,int userId, int addMoney) {
 
-             PreparedStatement preparedStatement = connection.prepareStatement(REQUEST_ADD_MONEY)) {
+        boolean insert = false;
+        try (PreparedStatement preparedStatement = connection.prepareStatement(REQUEST_ADD_MONEY)) {
             preparedStatement.setInt(1, addMoney);
             preparedStatement.setInt(2, userId);
-            preparedStatement.executeUpdate();
+            insert = preparedStatement.executeUpdate() > 0;
             LOG.info("Request to adding money");
         } catch (SQLException e) {
             LOG.info(e.getMessage());
         }
+        return insert;
     }
 
 
-    public void UpdateCostStatus(int requestId, int cost, int statusId, int masterId) {
+    public boolean UpdateCostStatus(Connection connection,int requestId, int cost, int statusId, int masterId) {
 
-        try (Connection connection = getConnection();
-
-             PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_REQUEST_STATUS)) {
+        boolean insert = false;
+        try (PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_REQUEST_STATUS)) {
             preparedStatement.setInt(1, cost);
             preparedStatement.setInt(2, statusId);
             preparedStatement.setInt(3, masterId);
             preparedStatement.setInt(4, requestId);
-            preparedStatement.executeUpdate();
+            insert = preparedStatement.executeUpdate() > 0;
             LOG.info("Set price and master to request");
         } catch (SQLException e) {
             LOG.info(e.getMessage());
         }
+        return insert;
     }
 
-    public void UpdateStatusByMaster(int requestId, int statusId) {
+    public boolean UpdateStatusByMaster(Connection connection,int requestId, int statusId) {
 
-        try (Connection connection = getConnection();
-
-             PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_REQUEST_STATUS_BY_MASTER)) {
+        boolean insert = false;
+        try (PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_REQUEST_STATUS_BY_MASTER)) {
             preparedStatement.setInt(1, statusId);
             preparedStatement.setInt(2, requestId);
-            preparedStatement.executeUpdate();
+            insert = preparedStatement.executeUpdate() > 0;
             LOG.info("Updating request status by master");
         } catch (SQLException e) {
             LOG.info(e.getMessage());
         }
+        return insert;
     }
 
-    public List<Master> listMasters() throws SQLException {
+    public List<Master> listMasters(Connection connection) throws SQLException {
         ResultSet rs = null;
         List<Master> listMasters = new ArrayList<>();
-        try (Connection connection = getConnection();
-
-             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_MASTERS)) {
+        try (PreparedStatement preparedStatement = connection.prepareStatement(SELECT_MASTERS)) {
             rs = preparedStatement.executeQuery();
             while (rs.next()) {
                 int masterId = rs.getInt("user_id");

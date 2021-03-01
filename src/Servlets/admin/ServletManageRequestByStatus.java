@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -21,16 +22,17 @@ public class ServletManageRequestByStatus extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 
+        Connection connection = dbManager.getConnection();
         List<ManageReq> usersRequestList = null;
         List<Master> listMasters = null;
 
         try {
-            usersRequestList = dbManager.findAllUsersRequestsByStatus();
+            usersRequestList = dbManager.findAllUsersRequestsByStatus(connection);
         } catch (SQLException throwable) {
             throwable.printStackTrace();
         }
         try {
-            listMasters = dbManager.listMasters();
+            listMasters = dbManager.listMasters(connection);
         } catch (SQLException throwable) {
             throwable.printStackTrace();
         }

@@ -11,12 +11,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
+import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 
@@ -30,6 +28,7 @@ public class ServletNewUser extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+        Connection connection = dbManager.getConnection();
         PrintWriter out = response.getWriter();
         String password;
         String login = request.getParameter("login");
@@ -49,7 +48,7 @@ public class ServletNewUser extends HttpServlet {
                 out.println("location='http://localhost:1977/myfinproject_war_exploded/home.jsp';");
                 out.println("</script>");
             } else {
-                dbManager.insertUser(Users.createUser(login, firstName, lastName, password, salt, wallet, moneyAdd, roleId));
+                dbManager.insertUser(connection,Users.createUser(login, firstName, lastName, password, salt, wallet, moneyAdd, roleId));
                 response.sendRedirect("http://localhost:1977/myfinproject_war_exploded/home.jsp");
             }
         } catch (SQLException e) {
@@ -59,9 +58,10 @@ public class ServletNewUser extends HttpServlet {
     }
 
     public boolean check(String login) throws SQLException {
+        Connection connection = dbManager.getConnection();
         boolean check = false;
         Logins logins = new Logins(login);
-        List<Logins> loginsList = dbManager.findAllLogins();
+        List<Logins> loginsList = dbManager.findAllLogins(connection);
         for (Logins value : loginsList) {
             if (value.equals(logins)) {
                 check = true;

@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -23,12 +24,13 @@ public class ServletSaveReport extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+        Connection connection = dbManager.getConnection();
         int reportId = Integer.parseInt(request.getParameter("reportId"));
         List<ManageReq> manageReqList = null;
 
         if (reportId == 1) {
             try {
-                manageReqList = dbManager.FindReportByDate();
+                manageReqList = dbManager.FindReportByDate(connection);
 
             } catch (SQLException throwable) {
                 throwable.printStackTrace();
@@ -37,7 +39,7 @@ public class ServletSaveReport extends HttpServlet {
 
         if (reportId == 2) {
             try {
-                manageReqList = dbManager.FindReportByStatus();
+                manageReqList = dbManager.FindReportByStatus(connection);
 
             } catch (SQLException throwable) {
                 throwable.printStackTrace();
@@ -46,7 +48,7 @@ public class ServletSaveReport extends HttpServlet {
 
         if (reportId == 3) {
             try {
-                manageReqList = dbManager.FindReportByCost();
+                manageReqList = dbManager.FindReportByCost(connection);
 
             } catch (SQLException throwable) {
                 throwable.printStackTrace();
