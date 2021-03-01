@@ -36,6 +36,7 @@
                                             type="number"
                                             name="addMoney"
                                             placeholder="<fmt:message key="my_wallet_placeholder"/>"
+                                            min="1"
                                             required
                                     />
                                 </td>

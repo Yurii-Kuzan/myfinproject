@@ -24,6 +24,11 @@
                 <ul class="navbar-nav">
                     <c:if test="${sessionScope['id'] > 3}">
                         <li class="nav-item">
+                            <a class="nav-link" href="${pageContext.request.contextPath}/show"><fmt:message key="header_new_request"/></a>
+                        </li>
+                    </c:if>
+                    <c:if test="${sessionScope['id'] > 3}">
+                        <li class="nav-item">
                             <a class="nav-link" href="${pageContext.request.contextPath}/myRequests"><fmt:message key="header_my_requests"/></a>
                         </li>
                     </c:if>
@@ -45,11 +50,6 @@
                             <a class="nav-link" href="${pageContext.request.contextPath}/workRequests"><fmt:message key="header_requests"/></a>
                         </li>
                     </c:if>
-                    <c:if test="${sessionScope['id'] != null}">
-                        <li class="nav-item ml-auto">
-                            <a class="nav-link" href="${pageContext.request.contextPath}/logout"><fmt:message key="header_log_out"/></a>
-                        </li>
-                    </c:if>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <fmt:message key="button_language"/>
@@ -59,6 +59,11 @@
                             <li><a class="dropdown-item" href="${pageContext.request.contextPath}/internalization?lang=ru">Русский</a></li>
                         </ul>
                     </li>
+                    <c:if test="${sessionScope['id'] != null}">
+                        <li class="nav-item ml-auto">
+                            <a class="nav-link" href="${pageContext.request.contextPath}/logout"><fmt:message key="header_log_out"/></a>
+                        </li>
+                    </c:if>
                 </ul>
             </div>
         </div>
