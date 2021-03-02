@@ -10,6 +10,10 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.Connection;
 
+/**
+ * Servlet for top up user wallet
+ */
+
 @WebServlet(name = "/addMoney")
 public class ServletAddMoney extends HttpServlet {
 

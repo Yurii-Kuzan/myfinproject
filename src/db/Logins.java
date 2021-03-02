@@ -1,6 +1,10 @@
 package db;
 import java.util.Objects;
 
+/**
+ * Login entity
+ */
+
 public class Logins {
 
 

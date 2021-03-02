@@ -15,6 +15,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Servlet for showing user wallet
+ */
+
 @WebServlet(name = "/wallet")
 public class ServletWallet extends HttpServlet {
 

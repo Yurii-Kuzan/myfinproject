@@ -2,6 +2,10 @@ package db;
 
 import db.entity.Users;
 
+/**
+ * Roles enum
+ */
+
 public enum Role {
     MANAGER, MASTER, CUSTOMER;
 

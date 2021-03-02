@@ -2,6 +2,10 @@ package db.entity;
 
 import java.util.Objects;
 
+/**
+ * Status entity
+ */
+
 public class Status {
     private int statusId;
     private String statusName;

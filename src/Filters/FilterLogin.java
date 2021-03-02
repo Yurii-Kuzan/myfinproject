@@ -1,6 +1,7 @@
 package Filters;
 
 import db.DBManager;
+import db.Logins;
 import db.entity.Users;
 import org.apache.log4j.Logger;
 
@@ -35,23 +36,35 @@ public class FilterLogin implements Filter {
         String login = request.getParameter("user_login");
         String password = request.getParameter("user_password");
         try {
-            String salt = dbManager.getUserSaultByEmail(connection,login);
-            password = password.concat(salt);
-        } catch (SQLException e) {
-            LOG.info(e.getMessage());
-        }
+            if (checkLogin(login)) {
+                try {
+                    String salt = dbManager.getUserSaultByEmail(connection, login);
+                    password = password.concat(salt);
+                } catch (SQLException e) {
+                    LOG.info(e.getMessage());
+                }
 
-        try {
-            if (check(login, sha256(password))) {
-                chain.doFilter(request, response);
-            } else {
+                try {
+                    if (check(login, sha256(password))) {
+                        chain.doFilter(request, response);
+                    } else {
+                        out.println("<script type=\"text/javascript\">");
+                        out.println("alert('Wrong login or password');");
+                        out.println("location='http://localhost:1977/myfinproject_war_exploded/home.jsp';");
+                        out.println("</script>");
+                    }
+                } catch (SQLException e) {
+                    LOG.info(e.getMessage());
+                }
+            }
+            else{
                 out.println("<script type=\"text/javascript\">");
                 out.println("alert('Wrong login or password');");
                 out.println("location='http://localhost:1977/myfinproject_war_exploded/home.jsp';");
                 out.println("</script>");
             }
         } catch (SQLException e) {
-            LOG.info(e.getMessage());
+            e.printStackTrace();
         }
     }
 
@@ -63,6 +76,21 @@ public class FilterLogin implements Filter {
         List<Users> usersList = dbManager.findUserEmailPass(connection);
         for (Users value : usersList) {
             if (value.equals(users)) {
+                check = true;
+                break;
+            }
+        }
+        return check;
+    }
+
+    public boolean checkLogin(String login) throws SQLException {
+
+        Connection connection = dbManager.getConnection();
+        boolean check = false;
+        Logins logins = new Logins(login);
+        List<Logins> loginsList = dbManager.findAllLogins(connection);
+        for (Logins value : loginsList) {
+            if (value.equals(logins)) {
                 check = true;
                 break;
             }

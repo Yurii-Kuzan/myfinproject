@@ -13,6 +13,10 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
+/**
+ * Servlet for managing requests by master
+ */
+
 @WebServlet(name = "/manageRequestsByMaster")
 public class ServletManageRequestByMaster extends HttpServlet {
 

@@ -2,6 +2,10 @@ package db;
 
 import java.util.Objects;
 
+/**
+ * Salt entity for hashing password
+ */
+
 public class Saults {
     private String sault;
 

@@ -13,6 +13,10 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
+/**
+ * Servlet for show users top up requests
+ */
+
 @WebServlet(name = "/addMoneyList")
 public class ServletAddMoneyList extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)

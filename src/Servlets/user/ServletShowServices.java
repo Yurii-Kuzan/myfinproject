@@ -13,6 +13,10 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
+/**
+ * Servlet to choose repairing product
+ */
+
 @WebServlet(name = "/show")
 public class ServletShowServices extends HttpServlet {
 

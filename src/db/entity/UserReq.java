@@ -1,6 +1,10 @@
 package db.entity;
 import java.util.Objects;
 
+/**
+ * User requests entity
+ */
+
 public class UserReq {
     private int requestId;
     private String serviceName;

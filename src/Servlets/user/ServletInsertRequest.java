@@ -14,6 +14,10 @@ import java.sql.Connection;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+/**
+ * Servlet for creating new request
+ */
+
 @WebServlet(name = "/insertRequest")
 public class ServletInsertRequest extends HttpServlet {
 

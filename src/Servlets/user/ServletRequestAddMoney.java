@@ -11,6 +11,10 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.Connection;
 
+/**
+ * Servlet for creating top up request
+ */
+
 @WebServlet(name = "/moneyRequest")
 public class ServletRequestAddMoney extends HttpServlet {
 

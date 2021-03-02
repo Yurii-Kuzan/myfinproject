@@ -2,6 +2,10 @@ package db.entity;
 
 import java.util.Objects;
 
+/**
+ * Request entity
+ */
+
 public class Request {
     private int requestId;
     private int userId;

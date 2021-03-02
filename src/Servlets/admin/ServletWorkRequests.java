@@ -14,6 +14,10 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
+/**
+ * Servlet for showing requests to master
+ */
+
 @WebServlet(name = "/workRequests")
 public class ServletWorkRequests extends HttpServlet {
 

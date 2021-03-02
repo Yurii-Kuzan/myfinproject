@@ -7,53 +7,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4314112a-6bdb-4fa9-910d-252741ad64d3" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/myfinproject_war_exploded.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/myfinproject_war_exploded.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/myfinproject.iml" beforeDir="false" afterPath="$PROJECT_DIR$/myfinproject.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/myfinproject_war_exploded/WEB-INF/classes/Filters/FilterLogin.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/myfinproject_war_exploded/WEB-INF/classes/Filters/FilterLogin.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/myfinproject_war_exploded/WEB-INF/classes/Servlets/admin/ServletAddMoney.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/myfinproject_war_exploded/WEB-INF/classes/Servlets/admin/ServletAddMoney.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/myfinproject_war_exploded/WEB-INF/classes/Servlets/admin/ServletAddMoneyList.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/myfinproject_war_exploded/WEB-INF/classes/Servlets/admin/ServletAddMoneyList.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/myfinproject_war_exploded/WEB-INF/classes/Servlets/admin/ServletManageRequest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/myfinproject_war_exploded/WEB-INF/classes/Servlets/admin/ServletManageRequest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/myfinproject_war_exploded/WEB-INF/classes/Servlets/admin/ServletManageRequestByMaster.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/myfinproject_war_exploded/WEB-INF/classes/Servlets/admin/ServletManageRequestByMaster.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/myfinproject_war_exploded/WEB-INF/classes/Servlets/admin/ServletManageRequestByStatus.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/myfinproject_war_exploded/WEB-INF/classes/Servlets/admin/ServletManageRequestByStatus.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/myfinproject_war_exploded/WEB-INF/classes/Servlets/admin/ServletSaveReport.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/myfinproject_war_exploded/WEB-INF/classes/Servlets/admin/ServletSaveReport.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/myfinproject_war_exploded/WEB-INF/classes/Servlets/admin/ServletUpdateStatus.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/myfinproject_war_exploded/WEB-INF/classes/Servlets/admin/ServletUpdateStatus.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/myfinproject_war_exploded/WEB-INF/classes/Servlets/admin/ServletUpdateStatusByMaster.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/myfinproject_war_exploded/WEB-INF/classes/Servlets/admin/ServletUpdateStatusByMaster.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/myfinproject_war_exploded/WEB-INF/classes/Servlets/admin/ServletWorkRequests.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/myfinproject_war_exploded/WEB-INF/classes/Servlets/admin/ServletWorkRequests.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/myfinproject_war_exploded/WEB-INF/classes/Servlets/login/ServletLogin.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/myfinproject_war_exploded/WEB-INF/classes/Servlets/login/ServletLogin.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/myfinproject_war_exploded/WEB-INF/classes/Servlets/login/ServletNewUser.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/myfinproject_war_exploded/WEB-INF/classes/Servlets/login/ServletNewUser.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/myfinproject_war_exploded/WEB-INF/classes/Servlets/user/ServletCancelRequest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/myfinproject_war_exploded/WEB-INF/classes/Servlets/user/ServletCancelRequest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/myfinproject_war_exploded/WEB-INF/classes/Servlets/user/ServletFeedback.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/myfinproject_war_exploded/WEB-INF/classes/Servlets/user/ServletFeedback.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/myfinproject_war_exploded/WEB-INF/classes/Servlets/user/ServletInsertRequest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/myfinproject_war_exploded/WEB-INF/classes/Servlets/user/ServletInsertRequest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/myfinproject_war_exploded/WEB-INF/classes/Servlets/user/ServletMyRequests.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/myfinproject_war_exploded/WEB-INF/classes/Servlets/user/ServletMyRequests.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/myfinproject_war_exploded/WEB-INF/classes/Servlets/user/ServletPayment.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/myfinproject_war_exploded/WEB-INF/classes/Servlets/user/ServletPayment.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/myfinproject_war_exploded/WEB-INF/classes/Servlets/user/ServletRequestAddMoney.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/myfinproject_war_exploded/WEB-INF/classes/Servlets/user/ServletRequestAddMoney.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/myfinproject_war_exploded/WEB-INF/classes/Servlets/user/ServletShowServices.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/myfinproject_war_exploded/WEB-INF/classes/Servlets/user/ServletShowServices.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/myfinproject_war_exploded/WEB-INF/classes/Servlets/user/ServletWallet.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/myfinproject_war_exploded/WEB-INF/classes/Servlets/user/ServletWallet.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/myfinproject_war_exploded/WEB-INF/classes/db/DBManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/myfinproject_war_exploded/WEB-INF/classes/db/DBManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/myfinproject_war_exploded/WEB-INF/classes/db/Main.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/myfinproject/Filters/FilterLogin.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/myfinproject/Filters/FilterLogin.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/myfinproject/Servlets/admin/ServletAddMoney.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/myfinproject/Servlets/admin/ServletAddMoney.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/myfinproject/Servlets/admin/ServletAddMoneyList.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/myfinproject/Servlets/admin/ServletAddMoneyList.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/myfinproject/Servlets/admin/ServletManageRequest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/myfinproject/Servlets/admin/ServletManageRequest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/myfinproject/Servlets/admin/ServletManageRequestByMaster.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/myfinproject/Servlets/admin/ServletManageRequestByMaster.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/myfinproject/Servlets/admin/ServletManageRequestByStatus.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/myfinproject/Servlets/admin/ServletManageRequestByStatus.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/myfinproject/Servlets/admin/ServletSaveReport.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/myfinproject/Servlets/admin/ServletSaveReport.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/myfinproject/Servlets/admin/ServletUpdateStatus.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/myfinproject/Servlets/admin/ServletUpdateStatus.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/myfinproject/Servlets/admin/ServletUpdateStatusByMaster.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/myfinproject/Servlets/admin/ServletUpdateStatusByMaster.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/myfinproject/Servlets/admin/ServletWorkRequests.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/myfinproject/Servlets/admin/ServletWorkRequests.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/myfinproject/Servlets/login/ServletLogin.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/myfinproject/Servlets/login/ServletLogin.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/myfinproject/Servlets/login/ServletNewUser.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/myfinproject/Servlets/login/ServletNewUser.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/myfinproject/Servlets/user/ServletCancelRequest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/myfinproject/Servlets/user/ServletCancelRequest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/myfinproject/Servlets/user/ServletFeedback.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/myfinproject/Servlets/user/ServletFeedback.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/myfinproject/Servlets/user/ServletInsertRequest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/myfinproject/Servlets/user/ServletInsertRequest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/myfinproject/Servlets/user/ServletMyRequests.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/myfinproject/Servlets/user/ServletMyRequests.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/myfinproject/Servlets/user/ServletPayment.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/myfinproject/Servlets/user/ServletPayment.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/myfinproject/Servlets/user/ServletRequestAddMoney.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/myfinproject/Servlets/user/ServletRequestAddMoney.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/myfinproject/Servlets/user/ServletShowServices.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/myfinproject/Servlets/user/ServletShowServices.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/myfinproject/Servlets/user/ServletWallet.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/myfinproject/Servlets/user/ServletWallet.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/myfinproject/db/DBManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/myfinproject/db/DBManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/myfinproject/db/Main.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Filters/FilterLogin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Filters/FilterLogin.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Servlets/admin/ServletAddMoney.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Servlets/admin/ServletAddMoney.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Servlets/admin/ServletAddMoneyList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Servlets/admin/ServletAddMoneyList.java" afterDir="false" />
@@ -65,16 +19,19 @@
       <change beforePath="$PROJECT_DIR$/src/Servlets/admin/ServletUpdateStatusByMaster.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Servlets/admin/ServletUpdateStatusByMaster.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Servlets/admin/ServletWorkRequests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Servlets/admin/ServletWorkRequests.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Servlets/login/ServletLogin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Servlets/login/ServletLogin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Servlets/login/ServletLogout.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Servlets/login/ServletLogout.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Servlets/login/ServletNewUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Servlets/login/ServletNewUser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Servlets/user/ServletCancelRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Servlets/user/ServletCancelRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Servlets/user/ServletFeedback.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Servlets/user/ServletFeedback.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Servlets/user/ServletInsertRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Servlets/user/ServletInsertRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Servlets/user/ServletMyRequests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Servlets/user/ServletMyRequests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Servlets/user/ServletPayment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Servlets/user/ServletPayment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Servlets/user/ServletRequestAddMoney.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Servlets/user/ServletRequestAddMoney.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Servlets/user/ServletShowServices.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Servlets/user/ServletShowServices.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Servlets/user/ServletWallet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Servlets/user/ServletWallet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/db/DBManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/db/DBManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/db/Logins.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/db/Logins.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/db/Role.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/db/Role.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/db/Saults.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/db/Saults.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/db/entity/ManageReq.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/db/entity/ManageReq.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/db/entity/Master.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/db/entity/Master.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/db/entity/Request.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/db/entity/Request.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/db/entity/Services.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/db/entity/Services.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/db/entity/Status.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/db/entity/Status.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/db/entity/UserReq.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/db/entity/UserReq.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/db/entity/Users.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/db/entity/Users.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/db/entity/Wallet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/db/entity/Wallet.java" afterDir="false" />
     </list>
     <list id="9f3aaa2a-daf2-49a5-a0e2-acd739980c0c" name="Revert &quot;v2&quot;" comment="Revert &quot;v2&quot;&#10;&#10;This reverts commit bd61f5c0" />
     <option name="SHOW_DIALOG" value="false" />
@@ -343,7 +300,7 @@
               <path>
                 <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
                 <item name="Tomcat Server" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-                <item name="Running" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+                <item name="Finished" type="7427dc5b:ServiceModel$ServiceGroupNode" />
               </path>
             </expand>
             <select />
@@ -431,54 +388,54 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="549" y="157" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1614640985002" />
-    <state width="1024" height="217" key="GridCell.Tab.0.bottom" timestamp="1614641773964">
+    <state width="1024" height="217" key="GridCell.Tab.0.bottom" timestamp="1614643775769">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1024" height="217" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1614641773964" />
-    <state width="1024" height="217" key="GridCell.Tab.0.center" timestamp="1614641773964">
+    <state width="1024" height="217" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1614643775769" />
+    <state width="1024" height="217" key="GridCell.Tab.0.center" timestamp="1614643775768">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1024" height="217" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1614641773964" />
-    <state width="1024" height="217" key="GridCell.Tab.0.left" timestamp="1614641773964">
+    <state width="1024" height="217" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1614643775768" />
+    <state width="1024" height="217" key="GridCell.Tab.0.left" timestamp="1614643775767">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1024" height="217" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1614641773964" />
-    <state width="1024" height="217" key="GridCell.Tab.0.right" timestamp="1614641773964">
+    <state width="1024" height="217" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1614643775767" />
+    <state width="1024" height="217" key="GridCell.Tab.0.right" timestamp="1614643775769">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1024" height="217" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1614641773964" />
-    <state width="1024" height="542" key="GridCell.Tab.1.bottom" timestamp="1614641727864">
+    <state width="1024" height="217" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1614643775769" />
+    <state width="1024" height="217" key="GridCell.Tab.1.bottom" timestamp="1614643775569">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1024" height="542" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1614641727864" />
-    <state width="1024" height="542" key="GridCell.Tab.1.center" timestamp="1614641727864">
+    <state width="1024" height="217" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1614643775569" />
+    <state width="1024" height="217" key="GridCell.Tab.1.center" timestamp="1614643775569">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1024" height="542" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1614641727864" />
-    <state width="1024" height="542" key="GridCell.Tab.1.left" timestamp="1614641727864">
+    <state width="1024" height="217" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1614643775569" />
+    <state width="1024" height="217" key="GridCell.Tab.1.left" timestamp="1614643775569">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1024" height="542" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1614641727864" />
-    <state width="1024" height="542" key="GridCell.Tab.1.right" timestamp="1614641727864">
+    <state width="1024" height="217" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1614643775569" />
+    <state width="1024" height="217" key="GridCell.Tab.1.right" timestamp="1614643775569">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1024" height="542" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1614641727864" />
-    <state width="1024" height="542" key="GridCell.Tab.2.bottom" timestamp="1614641727865">
+    <state width="1024" height="217" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1614643775569" />
+    <state width="1024" height="217" key="GridCell.Tab.2.bottom" timestamp="1614643775570">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1024" height="542" key="GridCell.Tab.2.bottom/0.0.1536.824@0.0.1536.824" timestamp="1614641727865" />
-    <state width="1024" height="542" key="GridCell.Tab.2.center" timestamp="1614641727864">
+    <state width="1024" height="217" key="GridCell.Tab.2.bottom/0.0.1536.824@0.0.1536.824" timestamp="1614643775570" />
+    <state width="1024" height="217" key="GridCell.Tab.2.center" timestamp="1614643775569">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1024" height="542" key="GridCell.Tab.2.center/0.0.1536.824@0.0.1536.824" timestamp="1614641727864" />
-    <state width="1024" height="542" key="GridCell.Tab.2.left" timestamp="1614641727864">
+    <state width="1024" height="217" key="GridCell.Tab.2.center/0.0.1536.824@0.0.1536.824" timestamp="1614643775569" />
+    <state width="1024" height="217" key="GridCell.Tab.2.left" timestamp="1614643775569">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1024" height="542" key="GridCell.Tab.2.left/0.0.1536.824@0.0.1536.824" timestamp="1614641727864" />
-    <state width="1024" height="542" key="GridCell.Tab.2.right" timestamp="1614641727865">
+    <state width="1024" height="217" key="GridCell.Tab.2.left/0.0.1536.824@0.0.1536.824" timestamp="1614643775569" />
+    <state width="1024" height="217" key="GridCell.Tab.2.right" timestamp="1614643775570">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1024" height="542" key="GridCell.Tab.2.right/0.0.1536.824@0.0.1536.824" timestamp="1614641727865" />
+    <state width="1024" height="217" key="GridCell.Tab.2.right/0.0.1536.824@0.0.1536.824" timestamp="1614643775570" />
     <state x="270" y="0" key="SettingsEditor" timestamp="1614641460995">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -503,10 +460,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="578" y="329" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824@0.0.1536.824" timestamp="1614622519863" />
-    <state x="473" y="168" width="609" height="536" key="find.popup" timestamp="1614537531080">
+    <state x="473" y="168" width="609" height="536" key="find.popup" timestamp="1614643250505">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="473" y="168" width="609" height="536" key="find.popup/0.0.1536.824@0.0.1536.824" timestamp="1614537531080" />
+    <state x="473" y="168" width="609" height="536" key="find.popup/0.0.1536.824@0.0.1536.824" timestamp="1614643250505" />
     <state x="209" y="7" key="new project wizard" timestamp="1613071621725">
       <screen x="0" y="0" width="1536" height="824" />
     </state>

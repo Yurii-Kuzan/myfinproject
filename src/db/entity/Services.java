@@ -2,6 +2,10 @@ package db.entity;
 
 import java.util.Objects;
 
+/**
+ * Services entity
+ */
+
 public class Services {
     private int serviceId;
     private String serviceName;

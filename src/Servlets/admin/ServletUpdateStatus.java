@@ -10,6 +10,10 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.Connection;
 
+/**
+ * Servlet for selecting master and price
+ */
+
 @WebServlet(name = "/updateCostStatus")
 public class ServletUpdateStatus extends HttpServlet {
 

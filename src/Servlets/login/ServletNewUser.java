@@ -18,6 +18,10 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Random;
 
+/**
+ * Servlet for creating user (register)
+ */
+
 @WebServlet(name = "/newUser")
 public class ServletNewUser extends HttpServlet {
 

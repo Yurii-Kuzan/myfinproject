@@ -16,6 +16,10 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
+/**
+ * Servlet for creating and saving reports
+ */
+
 @WebServlet(name = "/saveReport")
 public class ServletSaveReport extends HttpServlet {
 

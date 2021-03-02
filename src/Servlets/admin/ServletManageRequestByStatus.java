@@ -14,6 +14,10 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
+/**
+ * Servlet for managing requests sorted by status
+ */
+
 @WebServlet(name = "/manageRequestsByStatus")
 public class ServletManageRequestByStatus extends HttpServlet {
 

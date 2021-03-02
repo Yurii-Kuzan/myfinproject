@@ -2,6 +2,10 @@ package db.entity;
 
 import java.util.Objects;
 
+/**
+ * Wallet entity
+ */
+
 public class Wallet {
     private int wallet;
     private int addMoney;

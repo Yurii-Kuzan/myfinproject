@@ -9,6 +9,10 @@ import javax.servlet.http.HttpSession;
 import javax.servlet.jsp.jstl.core.Config;
 import java.io.IOException;
 
+/**
+ * Servlet to choose language
+ */
+
 @WebServlet(name = "/internalization")
 public class ServletLanguage extends HttpServlet {
 

@@ -2,6 +2,10 @@ package db.entity;
 
 import java.util.Objects;
 
+/**
+ * Master entity
+ */
+
 public class Master {
     int masterId;
     String masterName;

@@ -1,6 +1,10 @@
 package db.entity;
 import java.util.Objects;
 
+/**
+ * User entity
+ */
+
 public class Users {
     private int userId;
     private String login;
@@ -16,6 +20,7 @@ public class Users {
         this.login = login;
         this.password = password;
     }
+
     public Users(int userId,String firstName,String lastName,String login,int wallet,int moneyAdd){
         this.userId=userId;
         this.firstName=firstName;

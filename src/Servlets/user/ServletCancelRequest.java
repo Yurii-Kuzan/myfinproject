@@ -10,6 +10,10 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.Connection;
 
+/**
+ * Servlet for cancelling request
+ */
+
 @WebServlet(name = "/cancelRequest")
 public class ServletCancelRequest extends HttpServlet {
 

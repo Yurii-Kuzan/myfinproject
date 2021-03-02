@@ -10,6 +10,10 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.Connection;
 
+/**
+ * Servlet for updating status of request by master
+ */
+
 @WebServlet(name = "/updateStatusByMaster")
 public class ServletUpdateStatusByMaster extends HttpServlet {
 

@@ -12,6 +12,10 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 
+/**
+ * Servlet pay for service
+ */
+
 @WebServlet(name = "/payment")
 public class ServletPayment extends HttpServlet {
 

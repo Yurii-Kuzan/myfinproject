@@ -10,6 +10,10 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.Connection;
 
+/**
+ * Servlet for leaving a feedback
+ */
+
 @WebServlet(name = "/feedback")
 public class ServletFeedback extends HttpServlet {
 

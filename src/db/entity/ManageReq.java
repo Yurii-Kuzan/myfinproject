@@ -2,6 +2,10 @@ package db.entity;
 
 import java.util.Objects;
 
+/**
+ * Management requests entity
+ */
+
 public class ManageReq {
     private int requestId;
     private String firstName;

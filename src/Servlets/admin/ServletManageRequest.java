@@ -14,6 +14,10 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
+/**
+ * Servlet for managing requests
+ */
+
 @WebServlet(name = "/manageRequests")
 public class ServletManageRequest extends HttpServlet {
 
